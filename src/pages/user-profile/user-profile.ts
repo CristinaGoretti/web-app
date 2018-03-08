@@ -49,7 +49,6 @@ export class UserProfilePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserProfilePage');
-    this.text = 'Hello World';
     //this.getUsers();
     this.getUser();
 
