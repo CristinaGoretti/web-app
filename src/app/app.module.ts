@@ -30,6 +30,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { IssuesProvider } from '../providers/issues/issues';
 
 
+import { UserProvider } from '../providers/user/user';
+
 
 @NgModule({
   declarations: [
@@ -78,7 +80,8 @@ import { IssuesProvider } from '../providers/issues/issues';
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
 	Geolocation,
     AuthProvider,
-    IssuesProvider
+    IssuesProvider,
+    UserProvider
   ]
 })
 

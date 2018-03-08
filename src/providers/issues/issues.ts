@@ -1,5 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+
+import { config } from '../../app/config';
+import { Issue } from '../../models/issue';
+
 
 /*
   Generated class for the IssuesProvider provider.
@@ -10,8 +15,15 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class IssuesProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello IssuesProvider Provider');
+ constructor(public http: HttpClient) {
+    console.log('Hello UserProvider Provider');
   }
 
+  getIssues(): Observable<Issue[]> {
+    return this.http.get<User[]>(config.apiUrl + '/issues' ).pipe();
+  }
+	
+  getIssue(id :string): Observable<Issue> {
+    return this.http.get<User>(config.apiUrl + '/issue/' + id);
+  }
 }
