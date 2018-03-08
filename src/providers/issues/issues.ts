@@ -20,10 +20,10 @@ export class IssuesProvider {
   }
 
   getIssues(): Observable<Issue[]> {
-    return this.http.get<User[]>(config.apiUrl + '/issues' ).pipe();
+    return this.http.get<Issue[]>(config.apiUrl + '/issues' ).pipe();
   }
 	
   getIssue(id :string): Observable<Issue> {
-    return this.http.get<User>(config.apiUrl + '/issue/' + id);
+    return this.http.get<Issue>(config.apiUrl + '/issue/' + id);
   }
 }
