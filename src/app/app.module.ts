@@ -26,6 +26,9 @@ import { LoginPage } from '../pages/login/login';
 import { IonicStorageModule } from '@ionic/storage';
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { IssuesProvider } from '../providers/issues/issues';
+
 
 
 @NgModule({
@@ -47,7 +50,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     BrowserModule,
     IonicModule.forRoot(MyApp),
 	HttpClientModule,
-	IonicStorageModule.forRoot()
+	IonicStorageModule.forRoot(),
+	LeafletModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -72,7 +76,9 @@ import { Geolocation } from '@ionic-native/geolocation';
     AuthProvider,
     AuthInterceptorProvider,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
-	Geolocation
+	Geolocation,
+    AuthProvider,
+    IssuesProvider
   ]
 })
 

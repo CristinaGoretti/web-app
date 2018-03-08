@@ -36,6 +36,5 @@ export class IssueListPage {
   
   goToIssue(){
   	this.navCtrl.push(IssuePage);
-	
   }
 }

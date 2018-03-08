@@ -9,7 +9,7 @@ import { FiltersPage } from '../filters/filters';
 import { CreateIssuePage } from '../create-issue/create-issue';
 
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { latLng, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 
 
 
@@ -25,6 +25,8 @@ import { Geolocation } from '@ionic-native/geolocation';
   templateUrl: 'issue-map.html',
 })
 export class IssueMapPage {
+ mapOptions: MapOptions;
+ mapMarkers: Marker[];
 
  constructor(
     private auth: AuthProvider,
@@ -33,6 +35,21 @@ export class IssueMapPage {
     public navParams: NavParams,
 	private geolocation: Geolocation
   ) {
+	const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const tileLayerOptions = { maxZoom: 18 };
+    this.mapOptions = {
+      layers: [
+        tileLayer(tileLayerUrl, tileLayerOptions)
+      ],
+      zoom: 13,
+      center: latLng(46.778186, 6.641524)
+    };
+	this.mapMarkers = [
+      marker([ 46.778186, 6.641524 ]),
+      marker([ 46.780796, 6.647395 ]),
+      marker([ 46.784992, 6.652267 ]),
+	  marker([ 46.89, 6.652267 ])
+    ];
   }
 
   ionViewDidLoad() {

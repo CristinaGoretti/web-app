@@ -26,7 +26,7 @@
   (ionInput)="goToFilters()"
   (ionCancel)="onCancel($event)">
 </ion-searchbar>
-Let's display a map.
+<div class='map' leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'></div>
 <button ion-button (click)='goToCreateIssue()'>
   <ion-icon name="add"></ion-icon>
 </button>
