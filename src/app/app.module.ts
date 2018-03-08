@@ -25,6 +25,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { IonicStorageModule } from '@ionic/storage';
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
+import { UserProvider } from '../providers/user/user';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-inte
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     AuthInterceptorProvider,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
+    UserProvider
   ]
 })
 

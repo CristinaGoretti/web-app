@@ -19,5 +19,17 @@
 
 
 <ion-content padding>
+  <!--<div>
+      <ul>
+        <li *ngFor='let user of users'>{{user.id}} {{user.firstname}} {{user.lastname}}</li>
+    </ul>
+  </div>-->
+  <div *ngIf="profil"> 
+    <p>{{profil.name}}</p>
+    <p>{{profil.firstname}}</p>
+    <p>{{profil.lastname}}</p>
+    <p>{{profil.phone}}</p>
+    <p>{{profil.roles}}</p>
+  </div>
 Let's display our profile
 </ion-content>
