@@ -8,6 +8,9 @@ import { config } from '../../app/config';
 import { FiltersPage } from '../filters/filters';
 import { CreateIssuePage } from '../create-issue/create-issue';
 
+import { Geolocation } from '@ionic-native/geolocation';
+
+
 
 
 /**
@@ -27,12 +30,21 @@ export class IssueMapPage {
     private auth: AuthProvider,
 	public http: HttpClient,
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+	private geolocation: Geolocation
   ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueMapPage');
+	  
+	const geolocationPromise = this.geolocation.getCurrentPosition();
+    geolocationPromise.then(position => {
+      const coords = position.coords;
+      console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
+    }).catch(err => {
+      console.warn(`Could not retrieve user position because: ${err.message}`);
+    });
   }
   
    logOut() {
