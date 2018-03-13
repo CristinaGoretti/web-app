@@ -21,7 +21,7 @@ export class IssuesProvider {
   }
 
   getIssues(): Observable<Issue[]> {
-    return this.http.get<Issue[]>(config.apiUrl + '/issues' ).pipe();
+    return this.http.get<Issue[]>(config.apiUrl + '/issues?include=creator&include=issueType' );
   }
 	
   getIssue(id :string): Observable<Issue> {

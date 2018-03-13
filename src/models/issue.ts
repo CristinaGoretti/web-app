@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Issue {
   createdAt: Date;
   description: string;
@@ -9,4 +11,6 @@ export class Issue {
 	  type: string
   };
   tags:string[];
+  creator: User;
+
 }

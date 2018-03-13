@@ -23,7 +23,7 @@
 <ion-content padding>
 <div>
     <ul>
-        <li *ngFor='let issue of issues'>{{issue.id}}<button ion-button (click)='goToIssue(issue.id);'>GoToIssue</button></li>
+        <li *ngFor='let issue of issues'>{{issue.id}}{{issue.creator.firstname}}<button ion-button (click)='goToIssue(issue.id);'>GoToIssue</button></li>
   </ul>
 </div>
 Let's create an issue list.
