@@ -31,4 +31,5 @@ export class IssuesProvider {
   getCommentsIssue(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(config.apiUrl + '/issues/' + id + '/comments');
   }
+  
 }
