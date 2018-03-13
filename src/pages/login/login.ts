@@ -38,7 +38,9 @@ export class LoginPage {
   @ViewChild(NgForm)
   form: NgForm;
 
-  constructor(private auth: AuthProvider, private navCtrl: NavController) {
+  constructor(
+    private auth: AuthProvider, 
+    private navCtrl: NavController) {
     this.authRequest = new AuthRequest();
   }
 

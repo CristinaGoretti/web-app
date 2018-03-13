@@ -23,4 +23,32 @@
 
 <ion-content padding>
 Let's create a comment
+<form (submit)='onSubmit($event)'>
+    <ion-list>
+  
+      <!-- Text input -->
+      <ion-item>
+        <ion-label floating>Comment</ion-label>
+        <ion-input type='text' name='text'
+                   #textInput='ngModel' [(ngModel)]='commentRequest.text' required>
+        </ion-input>
+      </ion-item>
+  
+      <!-- Error message displayed if the name is invalid 
+      <ion-item *ngIf='textInput.invalid && textInput.dirty' no-lines>
+        <p ion-text color='danger'>Text is required.</p>
+      </ion-item>-->
+  
+    </ion-list>
+  
+    <div padding>
+  
+      <!-- Submit button -->
+      <button type='submit' [disabled]='form.invalid' ion-button block>Log in</button>
+  
+      <!-- Error message displayed if the login failed -->
+      <p *ngIf='loginError' ion-text color='danger'>Name or password is invalid.</p>
+  
+    </div>
+  </form>
 </ion-content>
