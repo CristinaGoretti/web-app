@@ -22,5 +22,6 @@
 
 <ion-content padding>
 Let's display an issue with a list of comments
+<p *ngIf="issue">{{issue.description}} {{issue.location.coordonates}}</p>
 <button ion-button (click)='goToCreateComment()'>Add comment</button>
 </ion-content>

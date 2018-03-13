@@ -20,7 +20,7 @@ export class IssueListPage {
 
   constructor(
     private auth: AuthProvider,
-	public http: HttpClient,
+	  public http: HttpClient,
     public navCtrl: NavController,
     public navParams: NavParams
   ) {
@@ -35,6 +35,8 @@ export class IssueListPage {
   }
   
   goToIssue(){
-  	this.navCtrl.push(IssuePage);
+  	this.navCtrl.push(IssuePage, {
+      id: this.navParams.data.id
+    });
   }
 }

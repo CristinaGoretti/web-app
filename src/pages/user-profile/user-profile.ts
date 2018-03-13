@@ -23,7 +23,12 @@ export class UserProfilePage {
   users: User[];
   profil: User;
 
-  constructor(public auth: AuthProvider, public userProvider: UserProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public auth: AuthProvider, 
+    public userProvider: UserProvider, 
+    public navCtrl: NavController, 
+    public navParams: NavParams
+  ) {
   
   }
   

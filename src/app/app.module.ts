@@ -28,8 +28,6 @@ import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-inte
 import { Geolocation } from '@ionic-native/geolocation';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { IssuesProvider } from '../providers/issues/issues';
-
-
 import { UserProvider } from '../providers/user/user';
 
 
