@@ -6,6 +6,7 @@ import { config } from '../../app/config';
 import { CreateCommentPage } from '../create-comment/create-comment';
 import { IssuesProvider } from '../../providers/issues/issues';
 import { Issue } from '../../models/issue';
+import { Comment } from '../../models/comment'
 
 /**
  * Generated class for the IssuePage page.
@@ -21,6 +22,8 @@ import { Issue } from '../../models/issue';
 export class IssuePage {
   issue: Issue;
   public idIssue;
+  comments: Comment[];
+  items = [];
 
   constructor(
     private auth: AuthProvider,
@@ -29,13 +32,31 @@ export class IssuePage {
     public navParams: NavParams,
     public issuesProvider: IssuesProvider
   ) {
-    this.idIssue = "5a9d2b0402a4c00014176b9d";
-    //this.idIssue = navParams.get('id');
 
+    this.idIssue = navParams.get('id');
+
+    for (var i = 0; i < 5; i++) {
+      this.items.push( this.items.length );
+    }
+  }
+
+  doInfinite(): Promise<any> {
+    console.log('Begin async operation');
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        for (var i = 0; i < 2; i++) {
+          this.items.push( this.items.length );
+        }
+        console.log('Async operation has ended');
+        resolve();
+      }, 500);
+    })
   }
   
 
   getIssue(){
+    console.log(this.idIssue);
     this.issuesProvider.getIssue(this.idIssue).subscribe(issue => {
       this.issue = issue;
       console.log(this.issue);
@@ -44,9 +65,19 @@ export class IssuePage {
     });
   }
 
+  getCommentaireIssue(){
+    console.log(this.idIssue);
+    this.issuesProvider.getCommentsIssue(this.idIssue).subscribe(comment => {
+      this.comments = comment;
+    }, err => {
+      console.warn('Could not get comments', err);
+    })
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssuePage');
     this.getIssue();
+    this.getCommentaireIssue();
   }
   
    logOut() {

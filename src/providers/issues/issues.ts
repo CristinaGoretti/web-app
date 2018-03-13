@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { config } from '../../app/config';
 import { Issue } from '../../models/issue';
+import { Comment } from '../../models/comment';
 
 
 /*
@@ -25,5 +26,9 @@ export class IssuesProvider {
 	
   getIssue(id :string): Observable<Issue> {
     return this.http.get<Issue>(config.apiUrl + '/issues/' + id);
+
+  }
+  getCommentsIssue(id: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(config.apiUrl + '/issues/' + id + '/comments');
   }
 }

@@ -22,6 +22,27 @@
 
 <ion-content padding>
 Let's display an issue with a list of comments
-<p *ngIf="issue">{{issue.description}} {{issue.location.coordonates}}</p>
-<button ion-button (click)='goToCreateComment()'>Add comment</button>
+<div *ngIf="issue">
+  <p>{{issue.id}}</p>
+  <p>{{issue.description}}</p>
+  <p>{{issue.location.coordinates[1]}}</p>
+  <p>{{issue.location.coordinates[0]}}</p>
+</div>
+<div>
+    <h1>commentaires</h1>
+    <button ion-button (click)='goToCreateComment()'>Add comment</button>
+    <ion-list>
+        <ion-item *ngFor="let comment of comments">{{comment.text}}</ion-item>
+    </ion-list>
+    
+    <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+      <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+       
+
+</div>
+
 </ion-content>

@@ -4,6 +4,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { HttpClient } from '@angular/common/http';
 import { config } from '../../app/config';
 import { IssuePage } from '../issue/issue';
+import { IssuesProvider} from '../../providers/issues/issues';
+import { Issue } from '../../models/issue';
 
 /**
  * Generated class for the IssueListPage page.
@@ -18,8 +20,11 @@ import { IssuePage } from '../issue/issue';
 })
 export class IssueListPage {
 
+  issues: Issue[];
+
   constructor(
     private auth: AuthProvider,
+    public issueProvider: IssuesProvider,
 	  public http: HttpClient,
     public navCtrl: NavController,
     public navParams: NavParams
@@ -27,16 +32,27 @@ export class IssueListPage {
   }
 
   ionViewDidLoad() {
+    this.getIssues();
     console.log('ionViewDidLoad IssueListPage');
+  }
+
+  getIssues(){
+    this.issueProvider.getIssues().subscribe(issues => {
+      console.log(issues);
+      this.issues = issues;
+    }, err => {
+      console.warn('Could not get issues', err);
+    });
   }
   
    logOut() {
     this.auth.logOut();
   }
   
-  goToIssue(){
+  goToIssue(id){
+    console.log(id);
   	this.navCtrl.push(IssuePage, {
-      id: this.navParams.data.id
+      id: id
     });
   }
 }
