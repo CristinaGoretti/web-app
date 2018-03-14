@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { User } from '../../models/user';
+import { Issue } from '../../models/issue';
 import { config } from '../../app/config';
 
 
@@ -26,6 +27,10 @@ export class UserProvider {
 
   getUser(id :string): Observable<User> {
     return this.http.get<User>(config.apiUrl + '/users/' + id);
+  }
+  
+  getUserIsssues(): Observable<Issue[]> {
+    return this.http.get<Issue[]>(config.apiUrl + '/me/issues');
   }
 
 }

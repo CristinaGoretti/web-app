@@ -4,7 +4,6 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage } from '../login/login';
 import { HttpClient } from '@angular/common/http';
 import { config } from '../../app/config';
-import { IssuePage } from '../issue/issue';
 
 /**
  * Generated class for the CreateIssuePage page.
@@ -39,11 +38,5 @@ export class CreateIssuePage {
     this.auth.logOut();
   }
 
-  goToIssue(id){
-    console.log(id);
-  	this.navCtrl.push(IssuePage, {
-      id: id
-    });
-  }
 
 }

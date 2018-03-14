@@ -46,16 +46,24 @@ export class UserProfilePage {
       this.profil = user;
       console.log(this.profil);
     }, err => {
-      console.warn('Could not get user', err);
+      console.warn('Could not get user authentificated', err);
     });
   }
 
+  getUserAuth(){
+    this.auth.getUserAuth().subscribe(user => {
+      console.log(user);
+    }, err => {
+      console.warn('Could not get user authentificated');
+    });
+  }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserProfilePage');
     //this.getUsers();
     this.getUser();
+    this.getUserAuth();
 
   }
 }

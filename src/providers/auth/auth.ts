@@ -68,5 +68,8 @@ logOut() {
   private saveAuth(auth: AuthResponse): Observable<void> {
   return Observable.fromPromise(this.storage.set('auth', auth));
 }
+getUserAuth(){
+  return this.http.get<User>(config.apiUrl + '/me');
+}
 
 }
