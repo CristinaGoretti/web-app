@@ -75,16 +75,16 @@ export class IssueMapPage {
     this.navCtrl.push(CreateIssuePage);
   }
 	
-   getIssues(){
+  getIssues(){
 	   
     this.issuesProvider.getIssues().subscribe(issues => {
-	console.log(issues);
+	    //console.log(issues);
 		
-	issues.forEach((i) => {
-		let m = marker([i.location.coordinates[1], i.location.coordinates[0]]);
-		this.mapMarkers.push(m);
-		console.log(m);
-	});
+      issues.forEach((i) => {
+        let m = marker([i.location.coordinates[1], i.location.coordinates[0]]);
+        this.mapMarkers.push(m);
+        //console.log(m);
+      });
     }, err => {
       console.warn('Could not get issues', err);
     });
