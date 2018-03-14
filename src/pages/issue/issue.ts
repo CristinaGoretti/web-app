@@ -35,7 +35,7 @@ export class IssuePage {
 
     this.idIssue = navParams.get('id');
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 30; i++) {
       this.items.push( this.items.length );
     }
   }
@@ -45,7 +45,7 @@ export class IssuePage {
 
     return new Promise((resolve) => {
       setTimeout(() => {
-        for (var i = 0; i < 2; i++) {
+        for (var i = 0; i < 10; i++) {
           this.items.push( this.items.length );
         }
         console.log('Async operation has ended');
@@ -84,8 +84,10 @@ export class IssuePage {
     this.auth.logOut();
   }
   
-  goToCreateComment(){
-  this.navCtrl.push(CreateCommentPage);
+  goToCreateComment(id){
+  this.navCtrl.push(CreateCommentPage, {
+    id: this.idIssue
+  });
   }
 
 }

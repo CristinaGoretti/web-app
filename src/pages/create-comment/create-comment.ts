@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { config } from '../../app/config';
 import { CommentRequest } from '../../models/comment-request';
 import { NgForm } from '@angular/forms';
+import { IssuesProvider } from '../../providers/issues/issues';
+import { IssuePage } from '../issue/issue';
 
 /**
  * Generated class for the CreateCommentPage page.
@@ -18,6 +20,8 @@ import { NgForm } from '@angular/forms';
   templateUrl: 'create-comment.html',
 })
 export class CreateCommentPage {
+  public idIssue;
+  public commentMessage: string;
 
   commentRequest: CommentRequest;
 
@@ -28,8 +32,10 @@ export class CreateCommentPage {
     private auth: AuthProvider,
 	  public http: HttpClient,
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public issuesProvider: IssuesProvider
   ) {
+    this.idIssue = navParams.get('id');
     this.commentRequest = new CommentRequest();
   }
 
@@ -47,9 +53,14 @@ export class CreateCommentPage {
     //this.loginError = false;
 
     this.createComment();
+    this.goToIssue(this.idIssue);
+
 }
   createComment(){
-
+    this.issuesProvider.postCommentsIssue(this.commentRequest, this.idIssue).subscribe(comment => {
+      this.commentMessage = "Commentaire bien ajouté";
+      console.log(comment);
+    });
   }
 
   ionViewDidLoad() {
@@ -58,6 +69,13 @@ export class CreateCommentPage {
   
    logOut() {
     this.auth.logOut();
+  }
+
+  goToIssue(id){
+    console.log(id);
+  	this.navCtrl.push(IssuePage, {
+      id: id
+    });
   }
 
 }

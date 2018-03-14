@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { config } from '../../app/config';
 import { Issue } from '../../models/issue';
 import { Comment } from '../../models/comment';
+import { CommentRequest } from '../../models/comment-request';
 
 
 /*
@@ -30,6 +31,9 @@ export class IssuesProvider {
   }
   getCommentsIssue(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(config.apiUrl + '/issues/' + id + '/comments');
+  }
+  postCommentsIssue(commentRequest: CommentRequest, id: string): Observable<Comment> {
+    return this.http.post<Comment>(config.apiUrl + '/issues/' + id + '/comments', commentRequest).pipe();
   }
   
 }

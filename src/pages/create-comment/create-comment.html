@@ -23,6 +23,7 @@
 
 <ion-content padding>
 Let's create a comment
+<p *ngIf="commentMessage">{{commentMessage}}</p>
 <form (submit)='onSubmit($event)'>
     <ion-list>
   
@@ -44,10 +45,10 @@ Let's create a comment
     <div padding>
   
       <!-- Submit button -->
-      <button type='submit' [disabled]='form.invalid' ion-button block>Log in</button>
+      <button type='submit' [disabled]='form.invalid' ion-button block>Add a comment</button>
   
       <!-- Error message displayed if the login failed -->
-      <p *ngIf='loginError' ion-text color='danger'>Name or password is invalid.</p>
+      <p *ngIf='loginError' ion-text color='danger'>Comment is invalid.</p>
   
     </div>
   </form>
