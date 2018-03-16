@@ -6,6 +6,7 @@ import { config } from '../../app/config';
 import { IssuePage } from '../issue/issue';
 import { IssuesProvider} from '../../providers/issues/issues';
 import { Issue } from '../../models/issue';
+import { FiltersPage } from '../filters/filters';
 
 /**
  * Generated class for the IssueListPage page.
@@ -54,5 +55,9 @@ export class IssueListPage {
   	this.navCtrl.push(IssuePage, {
       id: id
     });
+  }
+
+  goToFilters() {
+    this.navCtrl.push(FiltersPage);
   }
 }

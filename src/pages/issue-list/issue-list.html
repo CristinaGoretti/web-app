@@ -18,12 +18,11 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
+    <input [(ngModel)]="searchText" placeholder="search text goes here">
 <div>
     <ul>
-        <li *ngFor='let issue of issues'>{{issue.id}}{{issue.creator.firstname}}<button ion-button (click)='goToIssue(issue.id);'>GoToIssue</button></li>
+        <li *ngFor='let issue of issues | filter: searchText'>{{issue.id}}{{issue.creator.firstname}}<button ion-button (click)='goToIssue(issue.id);'>GoToIssue</button></li>
   </ul>
 </div>
 Let's create an issue list.

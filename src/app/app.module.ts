@@ -76,7 +76,7 @@ import { UserProvider } from '../providers/user/user';
     AuthProvider,
     AuthInterceptorProvider,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
-	Geolocation,
+	  Geolocation,
     AuthProvider,
     IssuesProvider,
     UserProvider

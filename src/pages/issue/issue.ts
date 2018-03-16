@@ -22,7 +22,7 @@ import { Comment } from '../../models/comment'
 export class IssuePage {
   issue: Issue;
   public idIssue;
-  comments: Comment[];
+  public comments: Comment[];
   items = [];
 
   constructor(
@@ -65,10 +65,13 @@ export class IssuePage {
     });
   }
 
+  //ICI il y a un soucis avec les commentaires qui ne veulent pas s'ajouter...
   getCommentaireIssue(){
     console.log(this.idIssue);
     this.issuesProvider.getCommentsIssue(this.idIssue).subscribe(comment => {
       this.comments = comment;
+      console.log("hello" + comment);
+      console.log("hello2" + this.comments);
     }, err => {
       console.warn('Could not get comments', err);
     })
@@ -78,6 +81,7 @@ export class IssuePage {
     console.log('ionViewDidLoad IssuePage');
     this.getIssue();
     this.getCommentaireIssue();
+    console.log("bonjour " + this.items);
   }
   
    logOut() {
