@@ -7,11 +7,14 @@ import { HttpClient } from '@angular/common/http';
 import { config } from '../../app/config';
 import { FiltersPage } from '../filters/filters';
 import { CreateIssuePage } from '../create-issue/create-issue';
+import { IssuePage } from '../issue/issue';
 import { IssuesProvider } from '../../providers/issues/issues';
-
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { latLng, MapOptions, marker, Marker, tileLayer } from 'leaflet';
+
+import {ViewChild} from '@angular/core';
+import {Nav} from 'ionic-angular';
 
 
 /**
@@ -59,7 +62,6 @@ export class IssueMapPage {
     }).catch(err => {
       console.warn(`Could not retrieve user position because: ${err.message}`);
     });
-	
 	  this.getIssues();
   }
   
@@ -74,20 +76,23 @@ export class IssueMapPage {
   goToCreateIssue(){
     this.navCtrl.push(CreateIssuePage);
   }
+
+  goToIssuePage(e){
+  	this.navCtrl.push(IssuePage, {
+		id: e.target.options.id
+	});
+  }
 	
   getIssues(){
-	   
     this.issuesProvider.getIssues().subscribe(issues => {
-	    //console.log(issues);
-		
-      issues.forEach((i) => {
-        let m = marker([i.location.coordinates[1], i.location.coordinates[0]]);
-        this.mapMarkers.push(m);
-        //console.log(m);
+      issues.map(i => {
+        let m = marker([i.location.coordinates[1], i.location.coordinates[0]],{id:i.id}).on('click',(e) => {this.goToIssuePage(e)});
+		this.mapMarkers.push(m);
       });
+	//issues.map(issue => console.log(issue));
     }, err => {
       console.warn('Could not get issues', err);
     });
   }
-
 }
+
