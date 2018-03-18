@@ -29,6 +29,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { IssuesProvider } from '../providers/issues/issues';
 import { UserProvider } from '../providers/user/user';
+import { IssueFilterProvider } from '../providers/issues/issueFilter';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { UserProvider } from '../providers/user/user';
 	  Geolocation,
     AuthProvider,
     IssuesProvider,
-    UserProvider
+    UserProvider,
+    IssueFilterProvider
   ]
 })
 
