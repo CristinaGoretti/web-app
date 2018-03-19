@@ -77,16 +77,16 @@ export class IssueMapPage {
     this.navCtrl.push(CreateIssuePage);
   }
 	
-  goToIssuePage(e){
-  	this.navCtrl.push(IssuePage, {
-		id: e.target.options.id
+  goToIssuePage(i){
+	 this.navCtrl.push(IssuePage, {
+		id: i
 	});
   }
 	
   getIssues(){
     this.issuesProvider.getIssues().subscribe(issues => {
       issues.map(i => {
-        let m = marker([i.location.coordinates[1], i.location.coordinates[0]],{id:i.id}).on('click',(e) => {this.goToIssuePage(e)});
+        let m = marker([i.location.coordinates[1], i.location.coordinates[0]]).on('click',() => {this.goToIssuePage(i.id)});
 		this.mapMarkers.push(m);
       });
 	//issues.map(issue => console.log(issue));
