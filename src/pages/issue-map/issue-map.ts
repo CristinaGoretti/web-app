@@ -13,10 +13,6 @@ import { IssuesProvider } from '../../providers/issues/issues';
 import { Geolocation } from '@ionic-native/geolocation';
 import { latLng, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 
-import {ViewChild} from '@angular/core';
-import {Nav} from 'ionic-angular';
-
-
 /**
  * Generated class for the IssueMapPage page.
  *
