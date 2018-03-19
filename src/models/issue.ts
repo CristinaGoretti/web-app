@@ -13,5 +13,4 @@ export class Issue {
   };
   tags:string[];
   creator: User;
-
 }

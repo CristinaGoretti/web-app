@@ -35,9 +35,14 @@ export class CreateCommentPage {
     public navParams: NavParams,
     public issuesProvider: IssuesProvider
   ) {
+		console.log('@@@ created page CreateCommentPage');
     this.idIssue = navParams.get('id');
     this.commentRequest = new CommentRequest();
   }
+	
+	onChange() {
+		console.log('@@@', this.commentRequest);
+	}
 
   onSubmit($event) {
 
@@ -65,6 +70,7 @@ export class CreateCommentPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateCommentPage');
+    this.commentRequest = new CommentRequest();
   }
   
    logOut() {

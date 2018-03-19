@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { AuthProvider } from '../../providers/auth/auth';
@@ -34,7 +34,8 @@ export class IssueMapPage {
     public navCtrl: NavController,
     public navParams: NavParams,
 	private geolocation: Geolocation,
-	private issuesProvider: IssuesProvider
+	private issuesProvider: IssuesProvider,
+	 private zone: NgZone
   ) {
 	const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
@@ -83,7 +84,12 @@ export class IssueMapPage {
   getIssues(){
     this.issuesProvider.getIssues().subscribe(issues => {
       issues.map(i => {
-        let m = marker([i.location.coordinates[1], i.location.coordinates[0]]).on('click',() => {this.goToIssuePage(i.id)});
+        let m = marker([i.location.coordinates[1], i.location.coordinates[0]]).on('click',() => {
+			this.zone.run(() => {
+				
+				this.goToIssuePage(i.id)
+			});
+		});
 		this.mapMarkers.push(m);
       });
 	//issues.map(issue => console.log(issue));
