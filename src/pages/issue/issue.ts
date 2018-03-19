@@ -56,7 +56,6 @@ export class IssuePage {
   
 
   getIssue(){
-    console.log(this.idIssue);
     this.issuesProvider.getIssue(this.idIssue).subscribe(issue => {
       this.issue = issue;
       console.log(this.issue);
@@ -67,7 +66,6 @@ export class IssuePage {
 
   //ICI il y a un soucis avec les commentaires qui ne veulent pas s'ajouter...
   getCommentaireIssue(){
-    console.log(this.idIssue);
     this.issuesProvider.getCommentsIssue(this.idIssue).subscribe(comment => {
       this.comments = comment;
       console.log("hello" + comment);
@@ -81,7 +79,6 @@ export class IssuePage {
     console.log('ionViewDidLoad IssuePage');
     this.getIssue();
     this.getCommentaireIssue();
-    console.log("bonjour " + this.items);
   }
   
    logOut() {
