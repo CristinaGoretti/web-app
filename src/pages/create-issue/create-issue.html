@@ -22,4 +22,45 @@
 
 <ion-content padding>
 Let's create an issue.
+<p *ngIf="issueMessage">{{issueMessage}}</p>
+<ion-list>
+    <ion-item *ngFor="let issueT of issueTypes">{{issueT.name}}</ion-item>
+</ion-list>
+<form (submit)='onSubmit($event)' #issueForm='ngForm'>
+    <ion-list>
+  
+      <!-- Text input -->
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-input type='text' name='description' (ionChange)='onChange()'
+                   #descriptionInput='ngModel' [(ngModel)]='issueRequest.description' required>
+        </ion-input>
+      </ion-item>
+
+
+      <ion-item *ngIf="issueTypes">
+          <ion-label floating>IssueType</ion-label>
+          <select>
+            <!--fuck ici ca marche pas ... saloperie de x-->
+              <option ng-repeat="x in issueTypes">{{x}}</option>
+            </select>
+      </ion-item>
+  
+      <!-- Error message displayed if the name is invalid 
+      <ion-item *ngIf='textInput.invalid && textInput.dirty' no-lines>
+        <p ion-text color='danger'>Text is required.</p>
+      </ion-item>-->
+  
+    </ion-list>
+  
+    <div padding>
+  
+      <!-- Submit button -->
+      <button type='submit' [disabled]='issueForm.invalid' ion-button block>Add a comment</button>
+  
+      <!-- Error message displayed if the login failed -->
+      <p *ngIf='descriptionInput.errors?.required' ion-text color='danger'>Comment is invalid.</p>
+  
+    </div>
+  </form>
 </ion-content>

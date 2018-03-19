@@ -6,6 +6,8 @@ import { config } from '../../app/config';
 import { Issue } from '../../models/issue';
 import { Comment } from '../../models/comment';
 import { CommentRequest } from '../../models/comment-request';
+import { IssueRequest } from '../../models/issue-request';
+import { IssueType } from '../../models/issueType';
 
 
 /*
@@ -34,6 +36,12 @@ export class IssuesProvider {
   }
   postCommentsIssue(commentRequest: CommentRequest, id: string): Observable<Comment> {
     return this.http.post<Comment>(config.apiUrl + '/issues/' + id + '/comments', commentRequest).pipe();
+  }
+  postIssue(issueRequest: IssueRequest): Observable<Issue> {
+    return this.http.post<Issue>(config.apiUrl + '/issues', issueRequest).pipe();
+  }
+  getIssueTypes(): Observable<IssueType[]> {
+    return this.http.get<IssueType[]>(config.apiUrl + '/issueTypes');
   }
   
 }
