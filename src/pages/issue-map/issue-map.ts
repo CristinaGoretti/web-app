@@ -35,7 +35,7 @@ export class IssueMapPage {
     public navParams: NavParams,
 	private geolocation: Geolocation,
 	private issuesProvider: IssuesProvider,
-	 private zone: NgZone
+	private zone: NgZone
   ) {
 	const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
@@ -56,6 +56,9 @@ export class IssueMapPage {
     geolocationPromise.then(position => {
       const coords = position.coords;
       console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
+		this.mapOptions = {
+			center: latLng(coords.longitude,coords.latitude)
+		}
     }).catch(err => {
       console.warn(`Could not retrieve user position because: ${err.message}`);
     });
