@@ -1,3 +1,33 @@
 page-issue-list {
 
+  .img_issuesList{
+
+    width: 100%;
+    height: 100%;
+    border: 4px solid white;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+
+  }
+
+  ion-col div{
+    background-color: none;
+    height: 100%;
+  }
+
+  ion-col div p{
+    padding: 5px;
+    margin: auto;
+    margin-bottom: 2px;
+    background-color: white;
+  }
+  ion-row {
+    background-color: whitesmoke;
+    margin-bottom: 5px;
+  }
+
+  .user{
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 }

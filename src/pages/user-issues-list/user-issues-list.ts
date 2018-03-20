@@ -6,6 +6,8 @@ import { config } from '../../app/config';
 import { IssuePage } from '../issue/issue';
 import { Issue } from '../../models/issue';
 import { UserProvider } from '../../providers/user/user';
+import { CreateIssuePage } from '../create-issue/create-issue';
+
 
 /**
  * Generated class for the UserIssuesListPage page.
@@ -54,6 +56,10 @@ export class UserIssuesListPage {
   	this.navCtrl.push(IssuePage, {
       id: id
     });
+  }
+
+  goToCreateIssue(){
+        this.navCtrl.push(CreateIssuePage);
   }
 
 

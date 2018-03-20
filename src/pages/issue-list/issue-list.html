@@ -19,13 +19,67 @@
 
 </ion-header>
 <ion-content padding>
-    <button ion-button (click)='goToCreateIssue()'>CREATE</button>
 
-    <input [(ngModel)]="searchText" placeholder="search text goes here">
+    <ion-fab middle right edge>
+        <button ion-fab mini (click)='goToCreateIssue()'><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
+    <ion-searchbar
+            [(ngModel)]="myInput"
+            [showCancelButton]="shouldShowCancel"
+            (ionInput)="goToFilters()"
+            (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+
+    <!--<input [(ngModel)]="searchText" placeholder="search text goes here">-->
+
+    <ion-list >
+        <ion-item *ngFor="let issue of issues" id="{{issue.id}}">
+            <ion-thumbnail item-start>
+                <img src="{{issue.imageUrl}}">
+            </ion-thumbnail>
+            <h2>{{issue.creator.firstname}}</h2>
+            <p>{{issue.createdAt | date: "yyyy/MM/dd"}} • {{issue.state}}</p>
+            <button ion-button clear item-end (click)='goToIssue(issue.id);'>Voir plus</button>
+        </ion-item>
+    </ion-list>
+
+    <!--
+    <ion-grid>
+
+        <ion-row *ngFor='let issue of issues'>
+            <ion-col>
+                <ion-img src="{{issue.imageUrl}}" class="img_issuesList"></ion-img>
+            </ion-col>
+            <ion-col>
+                <div>
+                        <p>
+                            Date: {{issue.createdAt | date: "yyyy/MM/dd"}}
+                        </p>
+                        <p>
+                            Posté par: <span id="{{issue.id}}" class="user">{{issue.creator.firstname}}</span>
+                        </p>
+
+                    <button ion-button small full (click)='goToIssue(issue.id);'>GoToIssue</button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    -->
+
+    <!--
 <div>
-    <ul>
-        <li *ngFor='let issue of issues'>{{issue.id}}{{issue.creator.firstname}}<button ion-button (click)='goToIssue(issue.id);'>GoToIssue</button></li>
-  </ul>
+   <ul>
+       <li *ngFor='let issue of issues'>
+           <img src="{{issue.imageUrl}}" class="img_issuesList">
+
+               {{issue.id}}<br>
+               <b>{{issue.creator.firstname}}</b><br>
+               <button ion-button (click)='goToIssue(issue.id);'>GoToIssue</button>
+
+       </li>
+   </ul>
 </div>
-Let's create an issue list.
+
+-->
 </ion-content>
