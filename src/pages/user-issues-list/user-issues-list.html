@@ -18,11 +18,21 @@
 </ion-header>
 
 <ion-content padding>
-  <div>
-      <ul>
-          <li *ngFor='let issue of issues'>{{issue.id}}<button ion-button (click)='goToIssue(issue.id);'>GoToIssue</button></li>
-    </ul>
-  </div>
-  Let's display user's issues
+
+  <ion-fab middle right edge>
+    <button ion-fab mini (click)='goToCreateIssue()'><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+
+  <ion-list >
+    <ion-item *ngFor="let issue of issues" id="{{issue.id}}">
+      <ion-thumbnail item-start>
+        <img src="{{issue.imageUrl}}">
+      </ion-thumbnail>
+      <p>{{issue.createdAt | date: "yyyy/MM/dd"}} • {{issue.state}}</p>
+      <button ion-button clear item-end (click)='goToIssue(issue.id);'>Voir plus</button>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
 

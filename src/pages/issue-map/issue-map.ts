@@ -11,7 +11,7 @@ import { IssuePage } from '../issue/issue';
 import { IssuesProvider } from '../../providers/issues/issues';
 
 import { Geolocation } from '@ionic-native/geolocation';
-import { latLng, MapOptions, marker, Marker, tileLayer } from 'leaflet';
+import {latLng, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 
 /**
  * Generated class for the IssueMapPage page.
@@ -27,7 +27,7 @@ import { latLng, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 export class IssueMapPage {
  mapOptions: MapOptions;
  mapMarkers: Marker[];
-
+	
  constructor(
     private auth: AuthProvider,
 	public http: HttpClient,
@@ -35,30 +35,27 @@ export class IssueMapPage {
     public navParams: NavParams,
 	private geolocation: Geolocation,
 	private issuesProvider: IssuesProvider,
-	 private zone: NgZone
+	private zone: NgZone
   ) {
 	const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
-    this.mapOptions = {
+	const geolocationPromise = this.geolocation.getCurrentPosition();  
+	geolocationPromise.then(position => {
+	  this.mapOptions = {
       layers: [
         tileLayer(tileLayerUrl, tileLayerOptions)
       ],
-      zoom: 13,
-      center: latLng(46.778186, 6.641524)
+      zoom: 15,
+      center: latLng(position.coords.latitude,position.coords.longitude)
     };
+	}).catch(err => {
+      console.warn(`Could not retrieve user position because: ${err.message}`);
+    });
 	this.mapMarkers=[];
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueMapPage');
-	  
-	const geolocationPromise = this.geolocation.getCurrentPosition();
-    geolocationPromise.then(position => {
-      const coords = position.coords;
-      console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
-    }).catch(err => {
-      console.warn(`Could not retrieve user position because: ${err.message}`);
-    });
 	  this.getIssues();
   }
   

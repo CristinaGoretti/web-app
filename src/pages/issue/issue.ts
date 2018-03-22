@@ -68,8 +68,6 @@ export class IssuePage {
   getCommentaireIssue(){
     this.issuesProvider.getCommentsIssue(this.idIssue).subscribe(comment => {
       this.comments = comment;
-      console.log("hello" + comment);
-      console.log("hello2" + this.comments);
     }, err => {
       console.warn('Could not get comments', err);
     })

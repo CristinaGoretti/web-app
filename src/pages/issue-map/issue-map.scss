@@ -1,5 +1,10 @@
 page-issue-map {
   .map {
     height: 100%;
+	  z-index: 0;
   }
+}
+
+.addIssue, .search {
+	z-index: 1;
 }

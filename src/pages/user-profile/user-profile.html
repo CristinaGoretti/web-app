@@ -24,6 +24,16 @@
         <li *ngFor='let user of users'>{{user.id}} {{user.firstname}} {{user.lastname}}</li>
     </ul>
   </div>-->
+
+  <ion-item *ngIf="profil" id="{{profil.id}}">
+    <div float-left>
+      <h2>{{profil.firstname}} {{profil.lastname}}</h2>
+      <p>{{profil.name}} • {{profil.roles}}</p>
+    </div>
+    <ion-icon float-right name="person"></ion-icon>
+
+  </ion-item>
+
   <div *ngIf="profil"> 
     <p>{{profil.name}}</p>
     <p>{{profil.firstname}}</p>
@@ -31,5 +41,5 @@
     <p>{{profil.phone}}</p>
     <p>{{profil.roles}}</p>
   </div>
-Let's display our profile
+
 </ion-content>

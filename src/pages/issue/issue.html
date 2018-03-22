@@ -22,13 +22,16 @@
 
 <ion-content padding>
 <div *ngIf="issue">
-  <p>{{issue.id}}</p>
-  <p>{{issue.description}}</p>
-  <p>{{issue.location.coordinates[1]}}</p>
-  <p>{{issue.location.coordinates[0]}}</p>
+    <img src="{{issue.imageUrl}}" class="imageIssue">
+    <h1>Informations</h1>
+    <p>Date: {{issue.createdAt | date: "yyyy/MM/dd"}}</p>
+    <p>Créateur: </p>
+    <p id="{{issue.id}}">{{issue.description}}</p>
+    <p>Latitude: {{issue.location.coordinates[1]}}</p>
+    <p>Longitude: {{issue.location.coordinates[0]}}</p>
 </div>
 <div>
-    <h1>commentaires</h1>
+    <h1>Commentaires</h1>
     <button ion-button (click)='goToCreateComment()'>Add comment</button>
     <ion-list>
         <ion-item *ngFor="let comment of comments">{{comment.text}}</ion-item>
