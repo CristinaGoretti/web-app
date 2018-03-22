@@ -1,5 +1,8 @@
 export class IssueRequest {
+    assigneeHref: null;
     createdAt: Date;
+    updatedAt: Date;
+    creatorHref: string;
     description: string;
     imageUrl: string;
     additionalImageUrls: [
@@ -11,4 +14,5 @@ export class IssueRequest {
       type: string;
     };
     tags: string[];
+    state: "new";
   }

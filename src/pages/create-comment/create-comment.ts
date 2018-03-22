@@ -60,7 +60,7 @@ export class CreateCommentPage {
     this.createComment();
     this.goToIssue(this.idIssue);
 
-}
+  }
   createComment(){
     this.issuesProvider.postCommentsIssue(this.commentRequest, this.idIssue).subscribe(comment => {
       this.commentMessage = "Commentaire bien ajouté";

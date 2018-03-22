@@ -8,6 +8,9 @@ import { NgForm } from '@angular/forms';
 import { IssuesProvider } from '../../providers/issues/issues';
 import { IssueRequest } from '../../models/issue-request';
 import { IssueType } from '../../models/issueType';
+import { Geolocation } from '@ionic-native/geolocation';
+import { User } from '../../models/user';
+import { IssueListPage } from '../issue-list/issue-list';
 
 /**
  * Generated class for the CreateIssuePage page.
@@ -26,6 +29,7 @@ export class CreateIssuePage {
   public issueMessage: string;
   issueRequest: IssueRequest;
   public issueTypes: IssueType[];
+  public profil: User;
 
   @ViewChild(NgForm)
   form: NgForm;  
@@ -35,10 +39,20 @@ export class CreateIssuePage {
 	  public http: HttpClient,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public issuesProvider: IssuesProvider
+    public issuesProvider: IssuesProvider,
+    public geolocation: Geolocation
   ) {
 
-    this.issueRequest = new IssueRequest;
+    this.issueRequest = new IssueRequest();
+    this.issueRequest.location = {
+      "coordinates": [
+        2.3,
+        2.3
+      ],
+      "type": "Point"
+    };
+    this.issueRequest.imageUrl = "http://example.com/image.png";
+
   }
 
   onChange() {
@@ -54,11 +68,40 @@ export class CreateIssuePage {
       return;
     }
 
+    //gestion user
+    this.getUser();
+
+    //gestion tags
+    const tags: string = this.form.controls.tags.value;
+		const tabTags: string[] = tags.split(',').map(tag => {
+			return tag.trim();
+		});
+		this.issueRequest.tags = tabTags;
+
+    //gestion localisation
+    const geolocationPromise = this.geolocation.getCurrentPosition();
+    geolocationPromise.then(position => {
+      const coords = position.coords;
+      
+      console.log(this.issueRequest);
+      this.issueRequest.location.coordinates[0] = coords.latitude;
+      this.issueRequest.location.coordinates[1] = coords.longitude;
+
+    }).catch(err => {
+      console.warn(`Could not retrieve user position because: ${err.message}`);
+    });
+
+
+    //gestion author
+    this.issueRequest.creatorHref = "/api/users/" + this.profil.id;
+
     // Hide any previous login error.
     //this.loginError = false;
-
+    console.log('---');
+    console.log(this.issueRequest.location.coordinates);
+    console.log('---');
     this.createIssue();
-
+    this.goToIssueListPage();
   }
 
   createIssue(){
@@ -66,6 +109,12 @@ export class CreateIssuePage {
       this.issueMessage = "Issue bien ajoutée";
     });
   }
+  /*createComment(){
+    this.issuesProvider.postCommentsIssue(this.commentRequest, this.idIssue).subscribe(comment => {
+      this.commentMessage = "Commentaire bien ajouté";
+      console.log(comment);
+    });
+  }*/
 
   getIssueTypes(){
     this.issuesProvider.getIssueTypes().subscribe(issueTypes => {
@@ -80,9 +129,22 @@ export class CreateIssuePage {
       //console.log(`Issue types loaded`, issueTypes);
     //});
     this.getIssueTypes();
+    this.getUser();
 
   }
+  getUser(){
+    this.auth.getUser().subscribe(user => {
+      this.profil = user;
+      console.log(this.profil);
+    }, err => {
+      console.warn('Could not get user authentificated', err);
+    });
+  }
   
+  goToIssueListPage(){
+    this.navCtrl.push(IssueListPage);
+  }
+
   logOut() {
     this.auth.logOut();
   }

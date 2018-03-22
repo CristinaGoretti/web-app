@@ -23,13 +23,10 @@
 <ion-content padding>
 Let's create an issue.
 <p *ngIf="issueMessage">{{issueMessage}}</p>
-<ion-list>
-    <ion-item *ngFor="let issueT of issueTypes">{{issueT.name}}</ion-item>
-</ion-list>
 <form (submit)='onSubmit($event)' #issueForm='ngForm'>
     <ion-list>
   
-      <!-- Text input -->
+      <!-- Description input -->
       <ion-item>
         <ion-label floating>Description</ion-label>
         <ion-input type='text' name='description' (ionChange)='onChange()'
@@ -37,15 +34,31 @@ Let's create an issue.
         </ion-input>
       </ion-item>
 
-
+      <!-- IssueType input -->
       <ion-item *ngIf="issueTypes">
-          <ion-label floating>IssueType</ion-label>
-          <select>
-            <!--fuck ici ca marche pas ... saloperie de x-->
-              <option ng-repeat="x in issueTypes">{{x}}</option>
-            </select>
+          <!--<ion-label floating>IssueType</ion-label>-->
+            <ion-label floating>Issue type</ion-label>
+              <ion-select [(ngModel)]="issueRequest.issueTypeHref" #issueTypeInput='ngModel' name="issueType">
+                <ion-option *ngFor="let issueType of issueTypes" value="/api/issueTypes/{{issueType.id}}">{{issueType.name}}</ion-option>
+            </ion-select>
+      </ion-item>
+
+      <!-- Tags input -->
+      <ion-item>
+        <ion-label floating>Tags - A séparer par des virgules!</ion-label>
+        <ion-input type='text' name='tags' (ionChange)='onChange()'
+                    #tagsInput='ngModel' [(ngModel)]='issueRequest.tags'>
+        </ion-input>
       </ion-item>
   
+      <!-- Tags input -->
+      <!--<ion-item>
+        <ion-label floating>Coordinate</ion-label>
+        <ion-input type='number' name='coordinate' (ionChange)='onChange()'
+                    #coordinateInput='ngModel' [(ngModel)]='issueRequest.coordinates'>
+        </ion-input>
+      </ion-item>-->
+
       <!-- Error message displayed if the name is invalid 
       <ion-item *ngIf='textInput.invalid && textInput.dirty' no-lines>
         <p ion-text color='danger'>Text is required.</p>

@@ -23,9 +23,6 @@
 
 <ion-content padding>
 Let's create a comment
-<ion-list>
-    <ion-item *ngFor="let issueT of issueTypes">{{issueT.name}}</ion-item>
-</ion-list>
 <form (submit)='onSubmit($event)' #commentForm='ngForm'>
     <ion-list>
   
