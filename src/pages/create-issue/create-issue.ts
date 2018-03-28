@@ -43,6 +43,7 @@ export class CreateIssuePage {
     public geolocation: Geolocation
   ) {
 
+    //initialisation des données de base d'une issue
     this.issueRequest = new IssueRequest();
     this.issueRequest.location = {
       "coordinates": [
@@ -51,6 +52,7 @@ export class CreateIssuePage {
       ],
       "type": "Point"
     };
+    //Ici il faudrait faire en sorte de l'upload enfaite dans le form
     this.issueRequest.imageUrl = "http://example.com/image.png";
 
   }

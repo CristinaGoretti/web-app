@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
@@ -34,8 +34,17 @@ export class IssuesProvider {
   getCommentsIssue(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(config.apiUrl + '/issues/' + id + '/comments');
   }
+  getCommentsIssueLink(id: string): Observable<HttpResponse<Comment[]>> {
+    //const options = { observe:  'response' };
+    return this.http.get<Comment[]>(config.apiUrl + '/issues/' + id + '/comments', {observe: 'response'});
+  }
+  //je ne sais pas si c'est ca qu'il faut faire....
+  getMoreCommentsIssueLink(id: string, link: string): Observable<HttpResponse<Comment[]>> {
+    return this.http.get<Comment[]>(link, {observe: 'response'});
+  }
   postCommentsIssue(commentRequest: CommentRequest, id: string): Observable<Comment> {
     return this.http.post<Comment>(config.apiUrl + '/issues/' + id + '/comments', commentRequest).pipe();
+    
   }
   postIssue(issueRequest: IssueRequest): Observable<Issue> {
     return this.http.post<Issue>(config.apiUrl + '/issues', issueRequest).pipe();

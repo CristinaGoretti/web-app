@@ -24,6 +24,7 @@ export class IssuePage {
   public idIssue;
   public comments: Comment[];
   items = [];
+  public linkMoreComment: string;
 
   constructor(
     private auth: AuthProvider,
@@ -40,7 +41,7 @@ export class IssuePage {
     }
   }
 
-  doInfinite(): Promise<any> {
+/*  doInfinite(): Promise<any> {
     console.log('Begin async operation');
 
     return new Promise((resolve) => {
@@ -52,7 +53,7 @@ export class IssuePage {
         resolve();
       }, 500);
     })
-  }
+  }*/
   
 
   getIssue(){
@@ -66,10 +67,29 @@ export class IssuePage {
 
   //ICI il y a un soucis avec les commentaires qui ne veulent pas s'ajouter...
   getCommentaireIssue(){
-    this.issuesProvider.getCommentsIssue(this.idIssue).subscribe(comment => {
-      this.comments = comment;
+    this.issuesProvider.getCommentsIssueLink(this.idIssue).subscribe(httpResponse => {
+      this.comments = httpResponse.body;
+
+      console.log(httpResponse);
+      console.log("-----------------");
+      console.log(httpResponse.body);
+      console.log("-----------------");
+      console.log(httpResponse.headers.get("Link"));
+      if(httpResponse.headers.get("Link") != null){
+        this.linkMoreComment = httpResponse.headers.get("Link").substring(1, httpResponse.headers.get("Link").indexOf(">"));
+      }
+      
+      console.log("-----------------");
     }, err => {
       console.warn('Could not get comments', err);
+    })
+  }
+  getMoreComment(){
+    this.issuesProvider.getMoreCommentsIssueLink(this.idIssue, this.linkMoreComment).subscribe(httpResponse =>{
+      this.comments = httpResponse.body;
+      this.linkMoreComment = httpResponse.headers.get("Link").substring(1, httpResponse.headers.get("Link").indexOf(">"));
+    }, err => {
+      console.warn('Could not get more comments', err);
     })
   }
 
