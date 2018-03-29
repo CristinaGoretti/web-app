@@ -23,8 +23,6 @@ import { CreateIssuePage } from '../create-issue/create-issue';
 export class IssueListPage {
 
   issues: Issue[];
-  public linkMoreIssue: string;
-  public i: number;
   public navigation: string[];
   public linkFirst: string;
   public linkPrev: string;
@@ -42,9 +40,8 @@ export class IssueListPage {
   }
 
   ionViewDidLoad() {
-    this.i = 1;
     //Ici il serait judicieux d'aller chercher directement la premiere appel a lapi via une methode mais trop la flemme
-    this.linkFirst = "https://comem-appmob-2018b.herokuapp.com/api/issues/?page=1&pageSize=20";
+    this.linkFirst = "https://comem-appmob-2018b.herokuapp.com/api/issues/?page=1&pageSize=20&include=creator&include=issueType";
     this.getMoreIssues(this.linkFirst);
     console.log('ionViewDidLoad IssueListPage');
   }
@@ -65,16 +62,16 @@ export class IssueListPage {
 
       this.navigation.forEach(link => {
         if(link.includes("first")){
-          this.linkFirst = link.substring(0, link.indexOf(">"));
+          this.linkFirst = link.substring(0, link.indexOf(">")) + "&include=creator&include=issueType";
         }
         if(link.includes("prev")){
-          this.linkPrev = link.substring(0, link.indexOf(">"));
+          this.linkPrev = link.substring(0, link.indexOf(">")) + "&include=creator&include=issueType";
         }
         if(link.includes("next")){
-          this.linkNext = link.substring(0, link.indexOf(">"));
+          this.linkNext = link.substring(0, link.indexOf(">")) + "&include=creator&include=issueType";
         }
         if(link.includes("last")){
-          this.linkLast = link.substring(0, link.indexOf(">"));
+          this.linkLast = link.substring(0, link.indexOf(">")) + "&include=creator&include=issueType";
         }
       });
     }, err => {

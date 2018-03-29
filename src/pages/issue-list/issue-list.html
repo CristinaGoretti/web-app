@@ -38,7 +38,7 @@
             <ion-thumbnail item-start>
                 <img src="{{issue.imageUrl}}">
             </ion-thumbnail>
-            <!--<h2>{{issue.creator.firstname}}</h2>-->
+            <h2>{{issue.creator.firstname}}</h2>
             <p>{{issue.createdAt | date: "yyyy/MM/dd"}} • {{issue.state}}</p>
             <button ion-button clear item-end (click)='goToIssue(issue.id);'>Voir plus</button>
         </ion-item>

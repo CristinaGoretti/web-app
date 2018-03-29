@@ -24,6 +24,7 @@ export class IssuesProvider {
   }
 
 
+  //Les basiques sont récupération des headers
   getIssue(id :string): Observable<Issue> {
     return this.http.get<Issue>(config.apiUrl + '/issues/' + id);
 
@@ -35,7 +36,8 @@ export class IssuesProvider {
     return this.http.get<Issue[]>(config.apiUrl + '/issues?include=creator&include=issueType' );
   }
 
-  
+
+  //Les complexes avec récupération des headers
   getIssuesLink(): Observable<HttpResponse<Issue[]>> {
     return this.http.get<Issue[]>(config.apiUrl + '/issues?include=creator&include=issueType', {observe: 'response' } );
   }
@@ -43,8 +45,10 @@ export class IssuesProvider {
     //const options = { observe:  'response' };
     return this.http.get<Comment[]>(config.apiUrl + '/issues/' + id + '/comments', {observe: 'response'});
   }
+
+
   getMoreCommentsIssueLink(id: string, link: string): Observable<HttpResponse<Comment[]>> {
-    return this.http.get<Comment[]>(link, {observe: 'response'});
+    return this.http.get<Comment[]>(link + "include=creator&include=issueType", {observe: 'response'});
   }
   getMoreIssuesLink(link: string): Observable<HttpResponse<Issue[]>> {
     return this.http.get<Issue[]>(link, {observe: 'response'});

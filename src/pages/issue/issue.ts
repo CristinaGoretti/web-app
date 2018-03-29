@@ -23,8 +23,12 @@ export class IssuePage {
   issue: Issue;
   public idIssue;
   public comments: Comment[];
-  items = [];
-  public linkMoreComment: string;
+  public navigation: string[];
+  public linkFirst: string;
+  public linkPrev: string;
+  public linkNext: string;
+  public linkLast: string;
+  public linkParse: string;
 
   constructor(
     private auth: AuthProvider,
@@ -35,25 +39,7 @@ export class IssuePage {
   ) {
 
     this.idIssue = navParams.get('id');
-
-    for (var i = 0; i < 30; i++) {
-      this.items.push( this.items.length );
-    }
   }
-
-/*  doInfinite(): Promise<any> {
-    console.log('Begin async operation');
-
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        for (var i = 0; i < 10; i++) {
-          this.items.push( this.items.length );
-        }
-        console.log('Async operation has ended');
-        resolve();
-      }, 500);
-    })
-  }*/
   
 
   getIssue(){
@@ -65,7 +51,7 @@ export class IssuePage {
     });
   }
 
-  getCommentaireIssue(){
+  /*getCommentaireIssue(){
     this.issuesProvider.getCommentsIssueLink(this.idIssue).subscribe(httpResponse => {
       this.comments = httpResponse.body;
 
@@ -82,11 +68,37 @@ export class IssuePage {
     }, err => {
       console.warn('Could not get comments', err);
     })
-  }
-  getMoreComment(){
-    this.issuesProvider.getMoreCommentsIssueLink(this.idIssue, this.linkMoreComment).subscribe(httpResponse =>{
+  }*/
+  getMoreComment(link: string){
+    this.issuesProvider.getMoreCommentsIssueLink(this.idIssue, link).subscribe(httpResponse =>{
       this.comments = httpResponse.body;
-      this.linkMoreComment = httpResponse.headers.get("Link").substring(1, httpResponse.headers.get("Link").indexOf(">"));
+      this.navigation = null;
+      if(httpResponse.headers.get("Link")){
+        this.linkParse = httpResponse.headers.get("Link").replace(/\s+/g, '').replace(/</g, '');
+        console.log(this.linkParse);
+        this.navigation =  this.linkParse.split(",");
+        console.log(this.navigation);
+  
+        this.linkFirst = null;
+        this.linkPrev = null;
+        this.linkNext = null;
+        this.linkLast = null;
+  
+        this.navigation.forEach(link => {
+          if(link.includes("first")){
+            this.linkFirst = link.substring(0, link.indexOf(">"));
+          }
+          if(link.includes("prev")){
+            this.linkPrev = link.substring(0, link.indexOf(">"));
+          }
+          if(link.includes("next")){
+            this.linkNext = link.substring(0, link.indexOf(">"));
+          }
+          if(link.includes("last")){
+            this.linkLast = link.substring(0, link.indexOf(">"));
+          }
+        });        
+      }
     }, err => {
       console.warn('Could not get more comments', err);
     })
@@ -95,7 +107,9 @@ export class IssuePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssuePage');
     this.getIssue();
-    this.getCommentaireIssue();
+    this.linkFirst = "https://comem-appmob-2018b.herokuapp.com/api/issues/" + this.idIssue + "/comments?page=1&pageSize=20>";
+    this.getMoreComment(this.linkFirst);
+    console.log(this.linkFirst);
   }
   
    logOut() {

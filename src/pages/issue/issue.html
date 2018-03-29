@@ -35,9 +35,13 @@
     <button ion-button (click)='goToCreateComment()'>Add comment</button>
     <ion-list>
         <ion-item *ngFor="let comment of comments">{{comment.text}}</ion-item>
-    </ion-list>
-    <button *ngIf="linkMoreComment" ion-button (click)='getMoreComment()'>More comments</button>
-    
+        <button *ngIf="linkFirst" ion-button (click)='getMoreComment(linkFirst)'>FirstComments</button>
+        <button *ngIf="linkPrev" ion-button (click)='getMoreComment(linkPrev)'>PrevComments</button>
+        <button *ngIf="linkNext" ion-button (click)='getMoreComment(linkNext)'>NextComments</button>
+        <button *ngIf="linkLast" ion-button (click)='getMoreComment(linkLast)'>LastComments</button>
+        
+      </ion-list>
+
     <!--<ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
       <ion-infinite-scroll-content
       loadingSpinner="bubbles"
