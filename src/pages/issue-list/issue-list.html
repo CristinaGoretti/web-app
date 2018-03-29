@@ -38,11 +38,15 @@
             <ion-thumbnail item-start>
                 <img src="{{issue.imageUrl}}">
             </ion-thumbnail>
-            <h2>{{issue.creator.firstname}}</h2>
+            <!--<h2>{{issue.creator.firstname}}</h2>-->
             <p>{{issue.createdAt | date: "yyyy/MM/dd"}} • {{issue.state}}</p>
             <button ion-button clear item-end (click)='goToIssue(issue.id);'>Voir plus</button>
         </ion-item>
     </ion-list>
+    <button *ngIf="linkFirst" ion-button (click)='getMoreIssues(linkFirst)'>FirstIssues</button>
+    <button *ngIf="linkPrev" ion-button (click)='getMoreIssues(linkPrev)'>PrevIssues</button>
+    <button *ngIf="linkNext" ion-button (click)='getMoreIssues(linkNext)'>NextIssues</button>
+    <button *ngIf="linkLast" ion-button (click)='getMoreIssues(linkLast)'>LastIssues</button>
 
     <!--
     <ion-grid>

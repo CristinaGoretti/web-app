@@ -30,6 +30,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { IssuesProvider } from '../providers/issues/issues';
 import { UserProvider } from '../providers/user/user';
 import { IssueFilterProvider } from '../providers/issues/issueFilter';
+import { PictureProvider } from '../providers/picture/picture';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { IssueFilterProvider } from '../providers/issues/issueFilter';
     AuthProvider,
     IssuesProvider,
     UserProvider,
-    IssueFilterProvider
+    IssueFilterProvider,
+    PictureProvider
   ]
 })
 

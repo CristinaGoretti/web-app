@@ -12,6 +12,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { User } from '../../models/user';
 import { IssueListPage } from '../issue-list/issue-list';
 
+//import { PictureProvider } from '../../providers/picture/picture';
 /**
  * Generated class for the CreateIssuePage page.
  *
@@ -30,6 +31,7 @@ export class CreateIssuePage {
   issueRequest: IssueRequest;
   public issueTypes: IssueType[];
   public profil: User;
+  public pictureData: string;
 
   @ViewChild(NgForm)
   form: NgForm;  
@@ -40,7 +42,8 @@ export class CreateIssuePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public issuesProvider: IssuesProvider,
-    public geolocation: Geolocation
+    public geolocation: Geolocation/*,
+    private camera: PictureProvider*/
   ) {
 
     //initialisation des données de base d'une issue
@@ -53,10 +56,21 @@ export class CreateIssuePage {
       "type": "Point"
     };
     //Ici il faudrait faire en sorte de l'upload enfaite dans le form
-    this.issueRequest.imageUrl = "http://example.com/image.png";
+    //this.issueRequest.imageUrl = this.pictureData;
+    this.issueRequest.imageUrl = "https://comem-appmob-2018b.herokuapp.com/images/broken-streetlight-2.jpg";
 
   }
 
+  //Ca ca devrait marcher si tout va bien
+  /*takePicture(){
+    this.issuesProvider.getIssueTypes().subscribe(issueTypes => {
+      this.issueTypes = issueTypes;
+      console.log(this.issueTypes);
+    });
+    this.camera.takeAndUploadPicture().subscribe(pictureData => {
+      this.pictureData = pictureData.url;
+    });
+  }*/
   onChange() {
 		console.log('@@@', this.issueRequest);
 	}

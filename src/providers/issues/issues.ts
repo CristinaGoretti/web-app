@@ -23,10 +23,7 @@ export class IssuesProvider {
     console.log('Hello UserProvider Provider');
   }
 
-  getIssues(): Observable<Issue[]> {
-    return this.http.get<Issue[]>(config.apiUrl + '/issues?include=creator&include=issueType' );
-  }
-	
+
   getIssue(id :string): Observable<Issue> {
     return this.http.get<Issue>(config.apiUrl + '/issues/' + id);
 
@@ -34,13 +31,23 @@ export class IssuesProvider {
   getCommentsIssue(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(config.apiUrl + '/issues/' + id + '/comments');
   }
+  getIssues(): Observable<Issue[]> {
+    return this.http.get<Issue[]>(config.apiUrl + '/issues?include=creator&include=issueType' );
+  }
+
+  
+  getIssuesLink(): Observable<HttpResponse<Issue[]>> {
+    return this.http.get<Issue[]>(config.apiUrl + '/issues?include=creator&include=issueType', {observe: 'response' } );
+  }
   getCommentsIssueLink(id: string): Observable<HttpResponse<Comment[]>> {
     //const options = { observe:  'response' };
     return this.http.get<Comment[]>(config.apiUrl + '/issues/' + id + '/comments', {observe: 'response'});
   }
-  //je ne sais pas si c'est ca qu'il faut faire....
   getMoreCommentsIssueLink(id: string, link: string): Observable<HttpResponse<Comment[]>> {
     return this.http.get<Comment[]>(link, {observe: 'response'});
+  }
+  getMoreIssuesLink(link: string): Observable<HttpResponse<Issue[]>> {
+    return this.http.get<Issue[]>(link, {observe: 'response'});
   }
   postCommentsIssue(commentRequest: CommentRequest, id: string): Observable<Comment> {
     return this.http.post<Comment>(config.apiUrl + '/issues/' + id + '/comments', commentRequest).pipe();

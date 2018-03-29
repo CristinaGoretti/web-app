@@ -65,7 +65,6 @@ export class IssuePage {
     });
   }
 
-  //ICI il y a un soucis avec les commentaires qui ne veulent pas s'ajouter...
   getCommentaireIssue(){
     this.issuesProvider.getCommentsIssueLink(this.idIssue).subscribe(httpResponse => {
       this.comments = httpResponse.body;

@@ -50,19 +50,13 @@ Let's create an issue.
                     #tagsInput='ngModel' [(ngModel)]='issueRequest.tags'>
         </ion-input>
       </ion-item>
-  
-      <!-- Tags input -->
+
       <!--<ion-item>
-        <ion-label floating>Coordinate</ion-label>
-        <ion-input type='number' name='coordinate' (ionChange)='onChange()'
-                    #coordinateInput='ngModel' [(ngModel)]='issueRequest.coordinates'>
-        </ion-input>
+        <button ion-button (click)='takePicture()'>Prendre une photo</button>
+        <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
       </ion-item>-->
 
-      <!-- Error message displayed if the name is invalid 
-      <ion-item *ngIf='textInput.invalid && textInput.dirty' no-lines>
-        <p ion-text color='danger'>Text is required.</p>
-      </ion-item>-->
+
   
     </ion-list>
   

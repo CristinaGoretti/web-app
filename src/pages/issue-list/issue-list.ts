@@ -23,6 +23,14 @@ import { CreateIssuePage } from '../create-issue/create-issue';
 export class IssueListPage {
 
   issues: Issue[];
+  public linkMoreIssue: string;
+  public i: number;
+  public navigation: string[];
+  public linkFirst: string;
+  public linkPrev: string;
+  public linkNext: string;
+  public linkLast: string;
+  public linkParse: string;
 
   constructor(
     private auth: AuthProvider,
@@ -34,17 +42,44 @@ export class IssueListPage {
   }
 
   ionViewDidLoad() {
-    this.getIssues();
+    this.i = 1;
+    //Ici il serait judicieux d'aller chercher directement la premiere appel a lapi via une methode mais trop la flemme
+    this.linkFirst = "https://comem-appmob-2018b.herokuapp.com/api/issues/?page=1&pageSize=20";
+    this.getMoreIssues(this.linkFirst);
     console.log('ionViewDidLoad IssueListPage');
   }
+  getMoreIssues(link: string){
+    console.log(link);
+    this.issueProvider.getMoreIssuesLink(link).subscribe(httpResponse =>{
+      this.issues = httpResponse.body;
+      this.navigation = null;
+      this.linkParse = httpResponse.headers.get("Link").replace(/\s+/g, '').replace(/</g, '');
+      console.log(this.linkParse);
+      this.navigation =  this.linkParse.split(",");
+      console.log(this.navigation);
 
-  getIssues(){
-    this.issueProvider.getIssues().subscribe(issues => {
-      console.log(issues);
-      this.issues = issues;
+      this.linkFirst = null;
+      this.linkPrev = null;
+      this.linkNext = null;
+      this.linkLast = null;
+
+      this.navigation.forEach(link => {
+        if(link.includes("first")){
+          this.linkFirst = link.substring(0, link.indexOf(">"));
+        }
+        if(link.includes("prev")){
+          this.linkPrev = link.substring(0, link.indexOf(">"));
+        }
+        if(link.includes("next")){
+          this.linkNext = link.substring(0, link.indexOf(">"));
+        }
+        if(link.includes("last")){
+          this.linkLast = link.substring(0, link.indexOf(">"));
+        }
+      });
     }, err => {
-      console.warn('Could not get issues', err);
-    });
+      console.warn('Could not get more comments', err);
+    })
   }
   
    logOut() {

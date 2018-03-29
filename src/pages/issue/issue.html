@@ -36,7 +36,6 @@
     <ion-list>
         <ion-item *ngFor="let comment of comments">{{comment.text}}</ion-item>
     </ion-list>
-    <!-- suspens ce machin-->
     <button *ngIf="linkMoreComment" ion-button (click)='getMoreComment()'>More comments</button>
     
     <!--<ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
