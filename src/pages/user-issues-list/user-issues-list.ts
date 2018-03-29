@@ -23,6 +23,12 @@ import { CreateIssuePage } from '../create-issue/create-issue';
 export class UserIssuesListPage {
 
   issues: Issue[];
+  public navigation: string[];
+  public linkFirst: string;
+  public linkPrev: string;
+  public linkNext: string;
+  public linkLast: string;
+  public linkParse: string;
 
  constructor(
     private auth: AuthProvider,
@@ -42,9 +48,50 @@ export class UserIssuesListPage {
     });
   }
 
+  getMoreIssues(link: string){
+    console.log(link);
+    this.userProvider.getMoreIssuesLink(link).subscribe(httpResponse =>{
+      this.issues = httpResponse.body;
+      console.log("c'est cici que tout ce passe");
+      console.log(httpResponse.headers);
+      this.navigation = null;
+      if(httpResponse.headers.get("Link")){
+        this.linkParse = httpResponse.headers.get("Link").replace(/\s+/g, '').replace(/</g, '');
+        console.log(this.linkParse);
+        this.navigation =  this.linkParse.split(",");
+        console.log(this.navigation);
+  
+        this.linkFirst = null;
+        this.linkPrev = null;
+        this.linkNext = null;
+        this.linkLast = null;
+  
+        this.navigation.forEach(link => {
+          if(link.includes("first")){
+            this.linkFirst = link.substring(0, link.indexOf(">")) + "&include=creator&include=issueType";
+          }
+          if(link.includes("prev")){
+            this.linkPrev = link.substring(0, link.indexOf(">")) + "&include=creator&include=issueType";
+          }
+          if(link.includes("next")){
+            this.linkNext = link.substring(0, link.indexOf(">")) + "&include=creator&include=issueType";
+          }
+          if(link.includes("last")){
+            this.linkLast = link.substring(0, link.indexOf(">")) + "&include=creator&include=issueType";
+          }
+        });
+      }
+    }, err => {
+      console.warn('Could not get more comments', err);
+    })
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserIssuesListPage');
-    this.getUserIssues();
+    //this.getUserIssues();
+    //Ici il serait judicieux d'aller chercher directement la premiere appel a lapi via une methode mais trop la flemme
+    this.linkFirst = "https://comem-appmob-2018b.herokuapp.com/api/me/issues?page=1&pageSize=20&include=creator&include=issueType";
+    this.getMoreIssues(this.linkFirst);
   }
   
    logOut() {

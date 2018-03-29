@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 //ICI ca foirre j'arrive pas a installer ionic camera etc...
 //import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Observable } from 'rxjs/Observable';
@@ -29,6 +30,7 @@ export class PictureProvider {
    * has been taken and successfully uploaded to the qimg API. An error may be
    * emitted instead if the user does not take a picture of if the upload fails.
    */
+  //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
   /*takeAndUploadPicture(): Observable<QimgImage> {
 
     // Take a picture.
@@ -57,6 +59,7 @@ export class PictureProvider {
    * once the picture has been taken. An error may be emitted instead if the
    * user does not take a picture.
    */
+  //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
   /*private takePicture(): Observable<string> {
 
     // Prepare camera options.

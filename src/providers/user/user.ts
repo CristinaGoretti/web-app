@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
@@ -29,8 +29,16 @@ export class UserProvider {
     return this.http.get<User>(config.apiUrl + '/users/' + id);
   }
   
+  //Pas de réception de l'header
   getUserIsssues(): Observable<Issue[]> {
     return this.http.get<Issue[]>(config.apiUrl + '/me/issues');
   }
+
+  //reception de l'header
+  getMoreIssuesLink(link: string): Observable<HttpResponse<Issue[]>> {
+    console.log("..............");
+    console.log(link);
+    return this.http.get<Issue[]>(link, {observe: 'response'});
+  }  
 
 }

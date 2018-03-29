@@ -11,7 +11,7 @@ import { IssueType } from '../../models/issueType';
 import { Geolocation } from '@ionic-native/geolocation';
 import { User } from '../../models/user';
 import { IssueListPage } from '../issue-list/issue-list';
-
+//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 //import { PictureProvider } from '../../providers/picture/picture';
 /**
  * Generated class for the CreateIssuePage page.
@@ -44,6 +44,7 @@ export class CreateIssuePage {
     public issuesProvider: IssuesProvider,
     public geolocation: Geolocation/*,
     private camera: PictureProvider*/
+    //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
   ) {
 
     //initialisation des données de base d'une issue
@@ -56,11 +57,12 @@ export class CreateIssuePage {
       "type": "Point"
     };
     //Ici il faudrait faire en sorte de l'upload enfaite dans le form
+    //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
     //this.issueRequest.imageUrl = this.pictureData;
     this.issueRequest.imageUrl = "https://comem-appmob-2018b.herokuapp.com/images/broken-streetlight-2.jpg";
 
   }
-
+//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
   //Ca ca devrait marcher si tout va bien
   /*takePicture(){
     this.issuesProvider.getIssueTypes().subscribe(issueTypes => {
@@ -125,12 +127,6 @@ export class CreateIssuePage {
       this.issueMessage = "Issue bien ajoutée";
     });
   }
-  /*createComment(){
-    this.issuesProvider.postCommentsIssue(this.commentRequest, this.idIssue).subscribe(comment => {
-      this.commentMessage = "Commentaire bien ajouté";
-      console.log(comment);
-    });
-  }*/
 
   getIssueTypes(){
     this.issuesProvider.getIssueTypes().subscribe(issueTypes => {
@@ -141,9 +137,6 @@ export class CreateIssuePage {
   
   ionViewDidLoad() {
   	const url = `${config.apiUrl}/issueTypes`;
-    //this.http.get(url).subscribe(issueTypes => {
-      //console.log(`Issue types loaded`, issueTypes);
-    //});
     this.getIssueTypes();
     this.getUser();
 

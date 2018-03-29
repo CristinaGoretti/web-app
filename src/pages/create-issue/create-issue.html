@@ -36,7 +36,6 @@ Let's create an issue.
 
       <!-- IssueType input -->
       <ion-item *ngIf="issueTypes">
-          <!--<ion-label floating>IssueType</ion-label>-->
             <ion-label floating>Issue type</ion-label>
               <ion-select [(ngModel)]="issueRequest.issueTypeHref" #issueTypeInput='ngModel' name="issueType">
                 <ion-option *ngFor="let issueType of issueTypes" value="/api/issueTypes/{{issueType.id}}">{{issueType.name}}</ion-option>
@@ -50,7 +49,7 @@ Let's create an issue.
                     #tagsInput='ngModel' [(ngModel)]='issueRequest.tags'>
         </ion-input>
       </ion-item>
-
+      <!--CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
       <!--<ion-item>
         <button ion-button (click)='takePicture()'>Prendre une photo</button>
         <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
