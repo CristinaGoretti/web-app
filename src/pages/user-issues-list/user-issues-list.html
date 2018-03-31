@@ -25,6 +25,7 @@
 
 
   <ion-list >
+    <p *ngIf='emptiness'>Aucune issue créée par cete utilisateur</p>
     <ion-item *ngFor="let issue of issues" id="{{issue.id}}">
       <ion-thumbnail item-start>
         <img src="{{issue.imageUrl}}">

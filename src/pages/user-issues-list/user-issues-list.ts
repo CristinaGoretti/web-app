@@ -23,6 +23,7 @@ import { CreateIssuePage } from '../create-issue/create-issue';
 export class UserIssuesListPage {
 
   issues: Issue[];
+  emptiness: boolean;
   public navigation: string[];
   public linkFirst: string;
   public linkPrev: string;
@@ -37,12 +38,17 @@ export class UserIssuesListPage {
     public navParams: NavParams,
     public userProvider: UserProvider
   ) {
+    this.emptiness = false;
   }
 
   getUserIssues(){
     this.userProvider.getUserIsssues().subscribe(issues => {
+      if(issues.length == 0){
+        this.emptiness = true;
+      }
       this.issues = issues;
       console.log(issues);
+
     }, err => {
       console.warn('Could not get issues from authentificated user', err);
     });
@@ -90,8 +96,10 @@ export class UserIssuesListPage {
     console.log('ionViewDidLoad UserIssuesListPage');
     //this.getUserIssues();
     //Ici il serait judicieux d'aller chercher directement la premiere appel a lapi via une methode mais trop la flemme
-    this.linkFirst = "https://comem-appmob-2018b.herokuapp.com/api/me/issues?page=1&pageSize=20&include=creator&include=issueType";
-    this.getMoreIssues(this.linkFirst);
+    //this.linkFirst = "https://comem-appmob-2018b.herokuapp.com/api/me/issues?page=1&pageSize=20&include=creator&include=issueType";
+    //this.getMoreIssues(this.linkFirst);
+
+    this.getUserIssues();
   }
   
    logOut() {

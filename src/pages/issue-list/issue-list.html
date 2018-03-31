@@ -36,7 +36,8 @@
       
       <!-- IssueType input -->
       <ion-item>
-          <ion-select *ngIf='searchIssueRequest' [(ngModel)]="searchIssueRequest.state" #searchIssueInput='ngModel' name="searchIssue" (ionInput)="goToFilters()">
+        <ion-label floating>Filtre par état</ion-label>
+        <ion-select *ngIf='searchIssueRequest' [(ngModel)]="searchIssueRequest.state" #searchIssueInput='ngModel' name="searchIssue" (ionInput)="goToFilters()">
             <ion-option value="new">New</ion-option>
             <ion-option value="inProgress">inProgess</ion-option>
         </ion-select>
