@@ -68,5 +68,6 @@ export class IssuesProvider {
   postSearchIssue(searchIssueRequest: SearchIssueRequest): Observable<Issue[]>{
     return this.http.post<Issue[]>(config.apiUrl + '/issues/searches?include=creator', searchIssueRequest);
   }
+
   
 }

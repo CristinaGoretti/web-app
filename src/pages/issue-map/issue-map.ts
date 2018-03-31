@@ -89,7 +89,7 @@ export class IssueMapPage {
 		});
 		this.mapMarkers.push(m);
       });
-	//issues.map(issue => console.log(issue));
+	issues.map(issue => console.log(issue));
     }, err => {
       console.warn('Could not get issues', err);
     });

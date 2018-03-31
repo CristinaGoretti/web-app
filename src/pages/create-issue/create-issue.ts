@@ -47,6 +47,18 @@ export class CreateIssuePage {
     private camera: PictureProvider*/
     //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
   ) {
+        //gestion localisation
+        const geolocationPromise = this.geolocation.getCurrentPosition();
+        geolocationPromise.then(position => {
+          const coords = position.coords;
+          this.coords = position.coords; 
+          
+          this.issueRequest.location.coordinates[0] = coords.latitude;
+          this.issueRequest.location.coordinates[1] = coords.longitude;
+    
+        }).catch(err => {
+          console.warn(`Could not retrieve user position because: ${err.message}`);
+        });
 
     //initialisation des données de base d'une issue
     this.issueRequest = new IssueRequest();
@@ -96,18 +108,6 @@ export class CreateIssuePage {
       this.issueRequest.tags = tabTags;      
     }
 
-    //gestion localisation
-    const geolocationPromise = this.geolocation.getCurrentPosition();
-    geolocationPromise.then(position => {
-      const coords = position.coords;
-      this.coords = position.coords; 
-      
-      this.issueRequest.location.coordinates[0] = coords.latitude;
-      this.issueRequest.location.coordinates[1] = coords.longitude;
-
-    }).catch(err => {
-      console.warn(`Could not retrieve user position because: ${err.message}`);
-    });
     this.issueRequest.location.coordinates[0] = this.coords.latitude;
     this.issueRequest.location.coordinates[1] = this.coords.longitude;
 
