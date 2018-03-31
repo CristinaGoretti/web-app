@@ -31,6 +31,24 @@
             (ionCancel)="onCancel($event)">
     </ion-searchbar>
 
+    <form (submit)='onSubmit($event)' #searchForm='ngForm'>
+        <ion-list>
+      
+      <!-- IssueType input -->
+      <ion-item>
+          <ion-select *ngIf='searchIssueRequest' [(ngModel)]="searchIssueRequest.state" #searchIssueInput='ngModel' name="searchIssue" (ionInput)="goToFilters()">
+            <ion-option value="new">New</ion-option>
+            <ion-option value="inProgress">inProgess</ion-option>
+        </ion-select>
+      </ion-item>
+      
+        </ion-list>
+        <div padding>
+      
+          <!-- Submit button -->
+          <button type='submit' [disabled]='searchForm.invalid' ion-button block>Add a filter</button>
+        </div>
+      </form>
 
 
 

@@ -8,6 +8,7 @@ import { Comment } from '../../models/comment';
 import { CommentRequest } from '../../models/comment-request';
 import { IssueRequest } from '../../models/issue-request';
 import { IssueType } from '../../models/issueType';
+import { SearchIssueRequest } from '../../models/searchIssues-request';
 
 
 /*
@@ -62,6 +63,10 @@ export class IssuesProvider {
   }
   getIssueTypes(): Observable<IssueType[]> {
     return this.http.get<IssueType[]>(config.apiUrl + '/issueTypes');
+  }
+
+  postSearchIssue(searchIssueRequest: SearchIssueRequest): Observable<Issue[]>{
+    return this.http.post<Issue[]>(config.apiUrl + '/issues/searches?include=creator', searchIssueRequest);
   }
   
 }

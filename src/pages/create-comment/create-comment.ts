@@ -65,6 +65,8 @@ export class CreateCommentPage {
     this.issuesProvider.postCommentsIssue(this.commentRequest, this.idIssue).subscribe(comment => {
       this.commentMessage = "Commentaire bien ajouté";
       console.log(comment);
+    }, err => {
+      console.log(err);
     });
   }
 
