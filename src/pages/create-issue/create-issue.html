@@ -37,7 +37,7 @@ Let's create an issue.
       <!-- IssueType input -->
       <ion-item *ngIf="issueTypes">
             <ion-label floating>Issue type</ion-label>
-              <ion-select [(ngModel)]="issueRequest.issueTypeHref" #issueTypeInput='ngModel' name="issueType">
+              <ion-select [(ngModel)]="issueRequest.issueTypeHref" #issueTypeInput='ngModel' name="issueType" required>
                 <ion-option *ngFor="let issueType of issueTypes" value="/api/issueTypes/{{issueType.id}}">{{issueType.name}}</ion-option>
             </ion-select>
       </ion-item>
@@ -62,10 +62,10 @@ Let's create an issue.
     <div padding>
   
       <!-- Submit button -->
-      <button type='submit' [disabled]='issueForm.invalid' ion-button block>Add a comment</button>
+      <button type='submit' [disabled]='issueForm.invalid' ion-button block>Add an issue</button>
   
       <!-- Error message displayed if the login failed -->
-      <p *ngIf='descriptionInput.errors?.required' ion-text color='danger'>Comment is invalid.</p>
+      <p *ngIf='descriptionInput.errors?.required' ion-text color='danger'>Isuue description is invalid.</p>
   
     </div>
   </form>

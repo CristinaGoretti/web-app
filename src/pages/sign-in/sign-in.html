@@ -14,5 +14,84 @@
 
 
 <ion-content padding>
-Let's sign in
+
+  <form (submit)='onSubmit($event)'>
+
+    <ion-list>
+
+      <!-- Name input -->
+      <ion-item>
+        <ion-label floating>Pseudo</ion-label>
+        <ion-input type='text' name='name'
+                   #nameInput='ngModel' [(ngModel)]='userRequest.name' required></ion-input>
+
+      </ion-item>
+
+      <!-- Error message displayed if the username is invalid -->
+      <ion-item *ngIf='nameInput.invalid && nameInput.dirty' no-lines>
+        <p ion-text color='danger'>Username is required</p>
+      </ion-item>
+
+      <!-- Password input -->
+      <ion-item>
+        <ion-label floating>Mot de passe</ion-label>
+        <ion-input type='password' name='password'
+                   #passwordInput='ngModel' [(ngModel)]='userRequest.password'required></ion-input>
+
+      </ion-item>
+
+      <!-- Error message displayed if the password is invalid -->
+      <ion-item *ngIf='passwordInput.invalid && passwordInput.dirty' no-lines>
+        <p ion-text color='danger'>Password is required.</p>
+      </ion-item>
+
+      <!-- Firstame input -->
+      <ion-item>
+        <ion-label floating>Prenom</ion-label>
+        <ion-input type='text' name='firstname'
+                   #firstnameInput='ngModel' [(ngModel)]='userRequest.firstname' required></ion-input>
+
+      </ion-item>
+
+      <!-- Error message displayed if the username is invalid -->
+      <ion-item *ngIf='firstnameInput.invalid && firstnameInput.dirty' no-lines>
+        <p ion-text color='danger'>Prenom is required.</p>
+      </ion-item>
+
+      <!-- Lastname input -->
+      <ion-item>
+        <ion-label floating>Nom</ion-label>
+        <ion-input type='text' name='lastname'
+                   #lastnameInput='ngModel' [(ngModel)]='userRequest.lastname' required></ion-input>
+      </ion-item>
+
+      <!-- Error message displayed if the username is invalid -->
+      <ion-item *ngIf='lastnameInput.invalid && lastnameInput.dirty' no-lines>
+        <p ion-text color='danger'>Nom is required.</p>
+      </ion-item>
+
+      <!-- Phone input -->
+      <ion-item>
+        <ion-label floating>Telephone</ion-label>
+        <ion-input type='text' name='phone'
+                   #phoneInput='ngModel' [(ngModel)]='userRequest.phone' required></ion-input>
+
+      </ion-item>
+
+      <!-- Error message displayed if the username is invalid -->
+      <ion-item *ngIf='phoneInput.invalid && phoneInput.dirty' no-lines>
+        <p ion-text color='danger'>Phone is required.</p>
+      </ion-item>
+
+    </ion-list>
+    <div padding>
+
+      <!-- Submit button -->
+      <button type='submit' [disabled]='form.invalid' ion-button block outline>Sign up</button>
+
+      <!-- Error message displayed if the login failed -->
+      <p *ngIf='loginError' ion-text color='danger'>Form invalid.</p>
+
+    </div>
+  </form>
 </ion-content>

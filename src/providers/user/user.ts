@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { User } from '../../models/user';
 import { Issue } from '../../models/issue';
 import { config } from '../../app/config';
+import { UserRequest } from '../../models/user-request';
 
 
 
@@ -22,7 +23,7 @@ export class UserProvider {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(config.apiUrl + '/users?page=1&pageSize=20&sort=firstname' ).pipe();
+    return this.http.get<User[]>(config.apiUrl + '/users?page=1&pageSize=20&sort=firstname' );
   }
 
   getUser(id :string): Observable<User> {
@@ -40,5 +41,9 @@ export class UserProvider {
     console.log(link);
     return this.http.get<Issue[]>(link, {observe: 'response'});
   }  
+
+  postUser(userRequest: UserRequest): Observable<User> {
+    return this.http.post<User>(config.apiUrl + "/users", userRequest).pipe();
+  }
 
 }
