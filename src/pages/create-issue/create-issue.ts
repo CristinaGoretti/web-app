@@ -32,6 +32,7 @@ export class CreateIssuePage {
   public issueTypes: IssueType[];
   public profil: User;
   public pictureData: string;
+  public coords: Coordinates;
 
   @ViewChild(NgForm)
   form: NgForm;  
@@ -50,10 +51,7 @@ export class CreateIssuePage {
     //initialisation des données de base d'une issue
     this.issueRequest = new IssueRequest();
     this.issueRequest.location = {
-      "coordinates": [
-        2.3,
-        2.3
-      ],
+      "coordinates": [0,0],
       "type": "Point"
     };
     //Ici il faudrait faire en sorte de l'upload enfaite dans le form
@@ -90,34 +88,34 @@ export class CreateIssuePage {
     this.getUser();
 
     //gestion tags
-    const tags: string = this.form.controls.tags.value;
-		const tabTags: string[] = tags.split(',').map(tag => {
-			return tag.trim();
-		});
-		this.issueRequest.tags = tabTags;
+    if(this.form.controls.tags.value != undefined){
+      const tags: string = this.form.controls.tags.value;
+      const tabTags: string[] = tags.split(',').map(tag => {
+        return tag.trim();
+      });
+      this.issueRequest.tags = tabTags;      
+    }
 
     //gestion localisation
     const geolocationPromise = this.geolocation.getCurrentPosition();
     geolocationPromise.then(position => {
       const coords = position.coords;
+      this.coords = position.coords; 
       
-      console.log(this.issueRequest);
       this.issueRequest.location.coordinates[0] = coords.latitude;
       this.issueRequest.location.coordinates[1] = coords.longitude;
 
     }).catch(err => {
       console.warn(`Could not retrieve user position because: ${err.message}`);
     });
+    this.issueRequest.location.coordinates[0] = this.coords.latitude;
+    this.issueRequest.location.coordinates[1] = this.coords.longitude;
+
 
 
     //gestion author
     this.issueRequest.creatorHref = "/api/users/" + this.profil.id;
 
-    // Hide any previous login error.
-    //this.loginError = false;
-    console.log('---');
-    console.log(this.issueRequest.location.coordinates);
-    console.log('---');
     this.createIssue();
     this.goToIssueListPage();
   }

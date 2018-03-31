@@ -62,10 +62,11 @@ Let's create an issue.
     <div padding>
   
       <!-- Submit button -->
-      <button type='submit' [disabled]='issueForm.invalid' ion-button block>Add an issue</button>
+      <button *ngIf='coords' type='submit' [disabled]='issueForm.invalid' ion-button block>Add an issue</button>
   
       <!-- Error message displayed if the login failed -->
       <p *ngIf='descriptionInput.errors?.required' ion-text color='danger'>Isuue description is invalid.</p>
+
   
     </div>
   </form>
