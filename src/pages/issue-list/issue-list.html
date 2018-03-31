@@ -24,12 +24,12 @@
         <button ion-fab mini (click)='goToCreateIssue()'><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 
-    <ion-searchbar
+    <!--<ion-searchbar
             [(ngModel)]="myInput"
             [showCancelButton]="shouldShowCancel"
             (ionInput)="goToFilters()"
             (ionCancel)="onCancel($event)">
-    </ion-searchbar>
+    </ion-searchbar>-->
 
     <form (submit)='onSubmit($event)' #searchForm='ngForm'>
         <ion-list>

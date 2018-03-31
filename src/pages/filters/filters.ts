@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Issue } from '../../models/issue';
+import { IssuePage } from '../issue/issue';
 
 /**
  * Generated class for the FiltersPage page.
@@ -29,4 +30,10 @@ export class FiltersPage {
     console.log(this.issues)
   }
 
+  goToIssue(id){
+    console.log(id);
+  	this.navCtrl.push(IssuePage, {
+      id: id
+    });
+  }
 }

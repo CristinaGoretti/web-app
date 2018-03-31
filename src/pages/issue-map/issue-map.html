@@ -20,13 +20,14 @@
 
 <ion-content padding>
 
-<ion-searchbar
+<!--<ion-searchbar
 	class="search"
 	[(ngModel)]="myInput"
 	[showCancelButton]="shouldShowCancel"
 	(ionInput)="goToFilters()"
 	(ionCancel)="onCancel($event)">
-</ion-searchbar>
+</ion-searchbar>-->
+
 <div class='map' *ngIf='mapOptions; else wait' leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'></div>
 <div id="wait"> 
 	<ion-spinner name="bubbles"></ion-spinner>
