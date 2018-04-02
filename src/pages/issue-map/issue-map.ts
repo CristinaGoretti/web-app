@@ -56,7 +56,7 @@ export class IssueMapPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueMapPage');
-	  this.getIssues();
+	  this.getIssues(1);
   }
   
    logOut() {
@@ -74,20 +74,25 @@ export class IssueMapPage {
 	});
   }
 	
-  getIssues(){
-    this.issuesProvider.getIssues().subscribe(issues => {
-      issues.map(i => {
-        let m = marker([i.location.coordinates[1], i.location.coordinates[0]]).on('click',() => {
-			this.zone.run(() => {
-				this.goToIssuePage(i.id)
+  getIssues(pageNumber){																				 
+	this.issuesProvider.getIssues(pageNumber).subscribe(issues => {
+		if(issues.length===50){
+			issues.map(i => {
+				let m = marker([i.location.coordinates[1], i.location.coordinates[0]]).on('click',() => {
+					this.zone.run(() => {
+						this.goToIssuePage(i.id)
+					});
+				});
+				this.mapMarkers.push(m);
+				//issues.map(issue => console.log(issue));
+			}, err => {
+				console.warn('Could not get issues', err);
 			});
-		});
-		this.mapMarkers.push(m);
-      });
-	//issues.map(issue => console.log(issue));
-    }, err => {
-      console.warn('Could not get issues', err);
-    });
-  }
+			this.getIssues(pageNumber+1);
+		}
+});
 }
+}
+
+
 
