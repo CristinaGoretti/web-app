@@ -19,19 +19,11 @@
 
 
 <ion-content padding>
-
-<ion-searchbar
-	class="search"
-	[(ngModel)]="myInput"
-	[showCancelButton]="shouldShowCancel"
-	(ionInput)="goToFilters()"
-	(ionCancel)="onCancel($event)">
-</ion-searchbar>
-<div class='map' *ngIf='mapOptions; else wait' leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'></div>
-<div id="wait"> 
-	<ion-spinner name="bubbles"></ion-spinner>
+<div class='map' *ngIf='mapOptions else loading' leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'></div>	
+<ng-template #loading>
+    <ion-spinner name="bubbles"></ion-spinner>
 	<p>En attente de la géolocation</p>
-</div>
+</ng-template>
 <button class="addIssue" ion-button (click)='goToCreateIssue()'>
   <ion-icon name="add"></ion-icon>
 </button>
