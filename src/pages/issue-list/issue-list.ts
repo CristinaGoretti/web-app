@@ -25,8 +25,8 @@ import { SearchIssueRequest } from '../../models/searchIssues-request';
 })
 export class IssueListPage {
 
-  searchIssueRequest: SearchIssueRequest;
-  issues: Issue[];
+  public searchIssueRequest: SearchIssueRequest;
+  public issues: Issue[];
   public navigation: string[];
   public linkFirst: string;
   public linkPrev: string;
@@ -40,7 +40,7 @@ export class IssueListPage {
   constructor(
     private auth: AuthProvider,
     public issueProvider: IssuesProvider,
-	  public http: HttpClient,
+	public http: HttpClient,
     public navCtrl: NavController,
     public navParams: NavParams
   ) {
@@ -110,8 +110,8 @@ export class IssueListPage {
 
 
 
+//Filters Handler
   onSubmit($event) {
-
     // Prevent default HTML form behavior.
     $event.preventDefault();
 
@@ -119,6 +119,8 @@ export class IssueListPage {
     if (this.form.invalid) {
       return;
     }
+	//filter the issues 
+	//display the filtered issues on a filterpage
     this.issueProvider.postSearchIssue(this.searchIssueRequest).subscribe(issue =>{
       console.log(issue);
       this.goToFilters(issue);

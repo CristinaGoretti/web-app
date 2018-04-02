@@ -31,7 +31,7 @@ export class UserProfilePage {
   ) {
   
   }
-  
+   
   getUsers(){
     this.userProvider.getUsers().subscribe(users => {
       console.log(users);

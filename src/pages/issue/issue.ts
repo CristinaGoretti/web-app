@@ -32,7 +32,7 @@ export class IssuePage {
 
   constructor(
     private auth: AuthProvider,
-	  public http: HttpClient,
+	public http: HttpClient,
     public navCtrl: NavController,
     public navParams: NavParams,
     public issuesProvider: IssuesProvider

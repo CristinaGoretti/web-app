@@ -77,7 +77,7 @@ import { PictureProvider } from '../providers/picture/picture';
     AuthProvider,
     AuthInterceptorProvider,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
-	  Geolocation,
+	Geolocation,
     AuthProvider,
     IssuesProvider,
     UserProvider,

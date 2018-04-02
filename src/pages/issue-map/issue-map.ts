@@ -5,7 +5,6 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage } from '../login/login';
 import { HttpClient } from '@angular/common/http';
 import { config } from '../../app/config';
-import { FiltersPage } from '../filters/filters';
 import { CreateIssuePage } from '../create-issue/create-issue';
 import { IssuePage } from '../issue/issue';
 import { IssuesProvider } from '../../providers/issues/issues';
@@ -63,10 +62,6 @@ export class IssueMapPage {
     this.auth.logOut();
   }
   
-  goToFilters() {
-    this.navCtrl.push(FiltersPage);
-  }
-  
   goToCreateIssue(){
     this.navCtrl.push(CreateIssuePage);
   }
@@ -83,7 +78,6 @@ export class IssueMapPage {
       issues.map(i => {
         let m = marker([i.location.coordinates[1], i.location.coordinates[0]]).on('click',() => {
 			this.zone.run(() => {
-				
 				this.goToIssuePage(i.id)
 			});
 		});

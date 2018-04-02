@@ -49,7 +49,7 @@
           <!-- Submit button -->
           <button type='submit' [disabled]='searchForm.invalid' ion-button block>Add a filter</button>
         </div>
-      </form>
+    </form>
 
 
 
@@ -72,43 +72,4 @@
     <button *ngIf="linkPrev" ion-button (click)='getMoreIssues(linkPrev)'>PrevIssues</button>
     <button *ngIf="linkNext" ion-button (click)='getMoreIssues(linkNext)'>NextIssues</button>
     <button *ngIf="linkLast" ion-button (click)='getMoreIssues(linkLast)'>LastIssues</button>
-
-    <!--
-    <ion-grid>
-
-        <ion-row *ngFor='let issue of issues'>
-            <ion-col>
-                <ion-img src="{{issue.imageUrl}}" class="img_issuesList"></ion-img>
-            </ion-col>
-            <ion-col>
-                <div>
-                        <p>
-                            Date: {{issue.createdAt | date: "yyyy/MM/dd"}}
-                        </p>
-                        <p>
-                            Posté par: <span id="{{issue.id}}" class="user">{{issue.creator.firstname}}</span>
-                        </p>
-
-                    <button ion-button small full (click)='goToIssue(issue.id);'>GoToIssue</button>
-                </div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    -->
-
-    <!--
-<div>
-   <ul>
-       <li *ngFor='let issue of issues'>
-           <img src="{{issue.imageUrl}}" class="img_issuesList">
-
-               {{issue.id}}<br>
-               <b>{{issue.creator.firstname}}</b><br>
-               <button ion-button (click)='goToIssue(issue.id);'>GoToIssue</button>
-
-       </li>
-   </ul>
-</div>
-
--->
 </ion-content>
