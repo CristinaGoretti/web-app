@@ -77,11 +77,15 @@ import { UserProvider } from '../providers/user/user';
     AuthProvider,
     AuthInterceptorProvider,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
-	  Geolocation,
+	Geolocation,
     AuthProvider,
     IssuesProvider,
     UserProvider,
+<<<<<<< HEAD
     //PictureProvider
+=======
+   // PictureProvider
+>>>>>>> 2a2cdb0e07b54ae8ca1b0fa2929832b809d55036
   ]
 })
 

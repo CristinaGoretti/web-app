@@ -9,7 +9,6 @@ import { IssuesProvider} from '../../providers/issues/issues';
 import { Issue } from '../../models/issue';
 import { FiltersPage } from '../filters/filters';
 import { CreateIssuePage } from '../create-issue/create-issue';
-
 import { SearchIssueRequest } from '../../models/searchIssues-request';
 
 /**
@@ -24,9 +23,8 @@ import { SearchIssueRequest } from '../../models/searchIssues-request';
   templateUrl: 'issue-list.html',
 })
 export class IssueListPage {
-
-  searchIssueRequest: SearchIssueRequest;
-  issues: Issue[];
+  public searchIssueRequest: SearchIssueRequest;
+  public issues: Issue[];
   public navigation: string[];
   public linkFirst: string;
   public linkPrev: string;
@@ -40,13 +38,12 @@ export class IssueListPage {
   constructor(
     private auth: AuthProvider,
     public issueProvider: IssuesProvider,
-	  public http: HttpClient,
+	public http: HttpClient,
     public navCtrl: NavController,
     public navParams: NavParams
   ) {
     this.searchIssueRequest = new SearchIssueRequest();
   }
-
 
   ionViewDidLoad() {
     //Ici il serait judicieux d'aller chercher directement la premiere appel a lapi via une methode mais trop la flemme
@@ -54,6 +51,7 @@ export class IssueListPage {
     this.getMoreIssues(this.linkFirst);
     console.log('ionViewDidLoad IssueListPage');
   }
+	
   getMoreIssues(link: string){
     console.log(link);
     this.issueProvider.getMoreIssuesLink(link).subscribe(httpResponse =>{
@@ -110,8 +108,8 @@ export class IssueListPage {
 
 
 
+//Filters Handler
   onSubmit($event) {
-
     // Prevent default HTML form behavior.
     $event.preventDefault();
 
@@ -119,6 +117,8 @@ export class IssueListPage {
     if (this.form.invalid) {
       return;
     }
+	//filter the issues 
+	//display the filtered issues on a filterpage
     this.issueProvider.postSearchIssue(this.searchIssueRequest).subscribe(issue =>{
       console.log(issue);
       this.goToFilters(issue);

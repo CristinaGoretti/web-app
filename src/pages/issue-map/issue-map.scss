@@ -1,10 +1,26 @@
 page-issue-map {
-  .map {
-    height: 100%;
-	  z-index: 0;
-  }
+	width: 100vw;
+	height: 100vh;
+	
+	.map {
+	height: 100%;
+	}
+
+	.template_loading {
+		height: 70px;
+		width: 180px;
+		position: absolute;
+		margin: auto;
+		top:0;
+		bottom:0;
+		left: 0;
+		right: 0;
+		
+	}
+
+	.spinner{
+		width: 28px;
+		margin-left: 70px;
+	}
 }
 
-.addIssue, .search {
-	z-index: 1;
-}

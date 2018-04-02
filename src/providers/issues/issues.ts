@@ -25,18 +25,16 @@ export class IssuesProvider {
   }
 
 
-  //Les basiques sont récupération des headers
+  //Les basiques sans récupération des headers
   getIssue(id :string): Observable<Issue> {
     return this.http.get<Issue>(config.apiUrl + '/issues/' + id);
-
   }
   getCommentsIssue(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(config.apiUrl + '/issues/' + id + '/comments');
   }
-  getIssues(): Observable<Issue[]> {
-    return this.http.get<Issue[]>(config.apiUrl + '/issues?include=creator&include=issueType' );
+  getIssues(pageNumber): Observable<Issue[]> {
+    return this.http.get<Issue[]>(config.apiUrl + '/issues?page='+pageNumber+'&pageSize=50');
   }
-
 
   //Les complexes avec récupération des headers
   getIssuesLink(): Observable<HttpResponse<Issue[]>> {
