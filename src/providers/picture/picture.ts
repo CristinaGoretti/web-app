@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+/*import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 //ICI ca foirre j'arrive pas a installer ionic camera etc...
@@ -15,10 +15,10 @@ import { QimgImage } from '../../models/qimg-image';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-@Injectable()
+/*@Injectable()
 export class PictureProvider {
 
-  constructor(/*ICI AUSSI FAUT VOIR AVEC L?INSTALLATION DE MERDE private camera: Camera,*/ public http: HttpClient) {
+  constructor(/*ICI AUSSI FAUT VOIR AVEC L?INSTALLATION DE MERDE private camera: Camera,*/ /* public http: HttpClient) {
     console.log('Hello PictureProvider Provider');
     console.log('@@@ http client', !!this.http);
   }
@@ -79,13 +79,13 @@ export class PictureProvider {
     return Observable.fromPromise(pictureDataPromise);
   }*/
 
-  /**
+  /*
    * Uploads raw picture data to the qimg API.
    *
    * Returns an observable that will emit the created QimgImage object.
    * An error may be emitted instead if the upload fails.
    */
-  private uploadPicture(pictureData: string): Observable<QimgImage> {
+  /*private uploadPicture(pictureData: string): Observable<QimgImage> {
 
     const requestBody = {
       data: pictureData
@@ -101,3 +101,5 @@ export class PictureProvider {
   }
 
 }
+
+*/

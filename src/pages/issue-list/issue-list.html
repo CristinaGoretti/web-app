@@ -35,30 +35,25 @@
         <ion-list>
       
       <!-- IssueType input -->
-      <ion-item>
-        <ion-label floating>Filtre par état</ion-label>
-        <ion-select *ngIf='searchIssueRequest' [(ngModel)]="searchIssueRequest.state" #searchIssueInput='ngModel' name="searchIssue" (ionInput)="goToFilters()">
-            <ion-option value="new">New</ion-option>
-            <ion-option value="inProgress">inProgess</ion-option>
-        </ion-select>
-      </ion-item>
-      
+            <ion-item>
+                <ion-label floating>Filtre par état</ion-label>
+                <ion-select *ngIf='searchIssueRequest' [(ngModel)]="searchIssueRequest.state" #searchIssueInput='ngModel' name="searchIssue" (ionInput)="goToFilters()">
+                    <ion-option value="new">New</ion-option>
+                    <ion-option value="inProgress">inProgess</ion-option>
+                </ion-select>
+            </ion-item>
         </ion-list>
-        <div padding>
-      
-          <!-- Submit button -->
-          <button type='submit' [disabled]='searchForm.invalid' ion-button block>Add a filter</button>
-        </div>
+
+        <!-- Submit button -->
+        <button full type='submit' [disabled]='searchForm.invalid' ion-button block> Rechercher</button>
+
     </form>
-
-
-
 
 
 
     <!--<input [(ngModel)]="searchText" placeholder="search text goes here">-->
 
-    <ion-list >
+    <ion-list>
         <ion-item *ngFor="let issue of issues" id="{{issue.id}}">
             <ion-thumbnail item-start>
                 <img src="{{issue.imageUrl}}">
@@ -68,8 +63,29 @@
             <button ion-button clear item-end (click)='goToIssue(issue.id);'>Voir plus</button>
         </ion-item>
     </ion-list>
+
+
+    <ion-navbar centre>
+        <button *ngIf="linkFirst" ion-button icon-left (click)='getMoreIssues(linkFirst)'>
+                <ion-icon name="arrow-back"></ion-icon> First
+        </button>
+
+        <button *ngIf="linkPrev" ion-button (click)='getMoreIssues(linkPrev)'> Prev
+        </button>
+
+        <button *ngIf="linkNext" ion-button (click)='getMoreIssues(linkNext)'> Next
+        </button>
+
+        <button *ngIf="linkLast" ion-button icon-left (click)='getMoreIssues(linkLast)'>
+                <ion-icon name="arrow-forward"></ion-icon> Last
+        </button>
+    </ion-navbar>
+
+    <!--
     <button *ngIf="linkFirst" ion-button (click)='getMoreIssues(linkFirst)'>FirstIssues</button>
     <button *ngIf="linkPrev" ion-button (click)='getMoreIssues(linkPrev)'>PrevIssues</button>
     <button *ngIf="linkNext" ion-button (click)='getMoreIssues(linkNext)'>NextIssues</button>
     <button *ngIf="linkLast" ion-button (click)='getMoreIssues(linkLast)'>LastIssues</button>
+
+    -->
 </ion-content>

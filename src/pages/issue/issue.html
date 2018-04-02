@@ -21,26 +21,37 @@
 
 
 <ion-content padding>
-<div *ngIf="issue">
+<div *ngIf="issue" class="bloc">
     <img src="{{issue.imageUrl}}" class="imageIssue">
-    <h1>Informations</h1>
-    <p>Date: {{issue.createdAt | date: "yyyy/MM/dd"}}</p>
-    <p>Créateur: </p>
-    <p id="{{issue.id}}">{{issue.description}}</p>
-    <p>Latitude: {{issue.location.coordinates[1]}}</p>
-    <p>Longitude: {{issue.location.coordinates[0]}}</p>
+    <ion-list id="{{issue.id}}">
+        <ion-list-header>
+                Informations
+        </ion-list-header>
+        <ion-item><b>Etat actuel:</b> {{issue.state}} </ion-item>
+        <ion-item><b>Description:</b> {{issue.description}} </ion-item>
+        <ion-item><b>Latitude:</b> {{issue.location.coordinates[1]}} </ion-item>
+        <ion-item><b>Longitude:</b> {{issue.location.coordinates[0]}} </ion-item>
+        <ion-item><b>Date de création:</b> {{issue.createdAt | date: "yyyy/MM/dd"}} </ion-item>
+        <ion-item><b>Date de modification:</b>  {{issue.updatedAt | date: "yyyy/MM/dd"}} </ion-item>
+    </ion-list>
 </div>
-<div>
-    <h1>Commentaires</h1>
-    <button ion-button (click)='goToCreateComment()'>Add comment</button>
+<div class="bloc">
     <ion-list>
-        <ion-item *ngFor="let comment of comments">{{comment.text}}</ion-item>
-        <button *ngIf="linkFirst" ion-button (click)='getMoreComment(linkFirst)'>FirstComments</button>
-        <button *ngIf="linkPrev" ion-button (click)='getMoreComment(linkPrev)'>PrevComments</button>
-        <button *ngIf="linkNext" ion-button (click)='getMoreComment(linkNext)'>NextComments</button>
-        <button *ngIf="linkLast" ion-button (click)='getMoreComment(linkLast)'>LastComments</button>
-        
-      </ion-list>
+        <ion-list-header>
+            Commentaires
+        </ion-list-header>
+        <ion-item *ngFor="let comment of comments">
+            <b>Posté le:</b> {{comment.createdAt | date: "yyyy/MM/dd"}}
+            <br>{{comment.text}}
+        </ion-item>
+    </ion-list>
+
+    <button ion-button full (click)='goToCreateComment()'>Ajouter un commentaire</button>
+    <button *ngIf="linkFirst" ion-button (click)='getMoreComment(linkFirst)'>FirstComments</button>
+    <button *ngIf="linkPrev" ion-button (click)='getMoreComment(linkPrev)'>PrevComments</button>
+    <button *ngIf="linkNext" ion-button (click)='getMoreComment(linkNext)'>NextComments</button>
+    <button *ngIf="linkLast" ion-button (click)='getMoreComment(linkLast)'>LastComments</button>
+
 
     <!--<ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
       <ion-infinite-scroll-content
