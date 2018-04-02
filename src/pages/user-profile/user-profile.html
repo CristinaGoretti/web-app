@@ -19,11 +19,6 @@
 
 
 <ion-content padding>
-  <!--<div>
-      <ul>
-        <li *ngFor='let user of users'>{{user.id}} {{user.firstname}} {{user.lastname}}</li>
-    </ul>
-  </div>-->
 
   <ion-item *ngIf="profil" id="{{profil.id}}">
     <div float-left>
@@ -34,12 +29,13 @@
 
   </ion-item>
 
-  <div *ngIf="profil"> 
-    <p>{{profil.name}}</p>
-    <p>{{profil.firstname}}</p>
-    <p>{{profil.lastname}}</p>
-    <p>{{profil.phone}}</p>
-    <p>{{profil.roles}}</p>
-  </div>
+  <ion-list *ngIf="profil">
+    <ion-item><b>Pseudo:</b> {{profil.name}} </ion-item>
+    <ion-item><b>Prénom:</b> {{profil.firstname}} </ion-item>
+    <ion-item><b>Nom de famille:</b> {{profil.lastname}} </ion-item>
+    <ion-item *ngIf="profil.phone"><b>Téléphone:</b> {{profil.phone}} </ion-item>
+    <ion-item><b>Rôle:</b> {{profil.roles}} </ion-item>
+  </ion-list>
+
 
 </ion-content>
