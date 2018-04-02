@@ -34,7 +34,7 @@ export class IssueMapPage {
     public navParams: NavParams,
 	private geolocation: Geolocation,
 	private issuesProvider: IssuesProvider,
-	private zone: NgZone
+	private zone: NgZone,
   ) {
 	const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
