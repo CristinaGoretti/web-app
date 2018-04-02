@@ -5,25 +5,24 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Issues Map</ion-title>
-	   <ion-buttons end>
-    <button ion-button icon-only (click)='logOut()'>
-      <ion-icon name='log-out'></ion-icon>
-    </button>
-  </ion-buttons>
+	  <ion-buttons end>
+		<button ion-button icon-only (click)='logOut()'>
+		  <ion-icon name='log-out'></ion-icon>
+		</button>
+	  </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-<div class='map' *ngIf='mapOptions; else wait' leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'></div>
-<div id="wait"> 
-	<ion-spinner name="bubbles"></ion-spinner>
+<div class='map' *ngIf='mapOptions else loading' leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'></div>
+<!-- desplay loading spinner until mapOptions is loaded--> 
+<ng-template #loading>
+    <ion-spinner name="bubbles"></ion-spinner>
 	<p>En attente de la géolocation</p>
-</div>
+</ng-template>
 <button class="addIssue" ion-button (click)='goToCreateIssue()'>
   <ion-icon name="add"></ion-icon>
 </button>

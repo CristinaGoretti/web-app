@@ -29,7 +29,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { IssuesProvider } from '../providers/issues/issues';
 import { UserProvider } from '../providers/user/user';
-import { PictureProvider } from '../providers/picture/picture';
+//import { PictureProvider } from '../providers/picture/picture';
 
 
 @NgModule({
@@ -81,7 +81,7 @@ import { PictureProvider } from '../providers/picture/picture';
     AuthProvider,
     IssuesProvider,
     UserProvider,
-    PictureProvider
+   // PictureProvider
   ]
 })
 
