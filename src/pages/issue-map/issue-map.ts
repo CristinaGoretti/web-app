@@ -38,14 +38,8 @@ export class IssueMapPage {
   ) {
 	const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
-	 this.mapOptions = {
-      layers: [
-        tileLayer(tileLayerUrl, tileLayerOptions)
-      ],
-      zoom: 15,
-      center: latLng(46.7654,6.645588)
-    };
-	/*const geolocationPromise = this.geolocation.getCurrentPosition();  
+		
+	const geolocationPromise = this.geolocation.getCurrentPosition();  
 	geolocationPromise.then(position => {
 	  this.mapOptions = {
       layers: [
@@ -56,7 +50,7 @@ export class IssueMapPage {
     };
 	}).catch(err => {
       console.warn(`Could not retrieve user position because: ${err.message}`);
-    });*/
+    });
 	this.mapMarkers=[];
   }
 
@@ -90,7 +84,7 @@ export class IssueMapPage {
 		});
 		this.mapMarkers.push(m);
       });
-	issues.map(issue => console.log(issue));
+	//issues.map(issue => console.log(issue));
     }, err => {
       console.warn('Could not get issues', err);
     });

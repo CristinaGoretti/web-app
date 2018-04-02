@@ -17,15 +17,17 @@
 
 
 <ion-content padding>
-<div class='map' *ngIf='mapOptions else loading' leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'></div>
-<!-- desplay loading spinner until mapOptions is loaded--> 
-<ng-template #loading>
-    <ion-spinner name="bubbles"></ion-spinner>
-	<p>En attente de la géolocation</p>
-</ng-template>
-<button class="addIssue" ion-button (click)='goToCreateIssue()'>
-  <ion-icon name="add"></ion-icon>
-</button>
+	<div class='map' *ngIf='mapOptions else loading' leaflet [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'></div>
+	<!-- desplay loading spinner until mapOptions is loaded--> 
+	<ng-template #loading>
+		<div class="template_loading">
+			<ion-spinner name="bubbles" class="spinner"></ion-spinner>
+			<p>En attente de la géolocation</p>
+		</div>
+	</ng-template>
+	<!--<button class="addIssue" ion-button (click)='goToCreateIssue()'>
+	  <ion-icon name="add"></ion-icon>
+	</button>-->
 </ion-content>
 
 

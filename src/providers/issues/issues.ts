@@ -25,7 +25,7 @@ export class IssuesProvider {
   }
 
 
-  //Les basiques sont récupération des headers
+  //Les basiques sans récupération des headers
   getIssue(id :string): Observable<Issue> {
     return this.http.get<Issue>(config.apiUrl + '/issues/' + id);
 

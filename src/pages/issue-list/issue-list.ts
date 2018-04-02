@@ -9,7 +9,6 @@ import { IssuesProvider} from '../../providers/issues/issues';
 import { Issue } from '../../models/issue';
 import { FiltersPage } from '../filters/filters';
 import { CreateIssuePage } from '../create-issue/create-issue';
-
 import { SearchIssueRequest } from '../../models/searchIssues-request';
 
 /**
@@ -24,7 +23,6 @@ import { SearchIssueRequest } from '../../models/searchIssues-request';
   templateUrl: 'issue-list.html',
 })
 export class IssueListPage {
-
   public searchIssueRequest: SearchIssueRequest;
   public issues: Issue[];
   public navigation: string[];
@@ -47,13 +45,13 @@ export class IssueListPage {
     this.searchIssueRequest = new SearchIssueRequest();
   }
 
-
   ionViewDidLoad() {
     //Ici il serait judicieux d'aller chercher directement la premiere appel a lapi via une methode mais trop la flemme
     this.linkFirst = "https://comem-appmob-2018b.herokuapp.com/api/issues/?page=1&pageSize=20&include=creator&include=issueType";
     this.getMoreIssues(this.linkFirst);
     console.log('ionViewDidLoad IssueListPage');
   }
+	
   getMoreIssues(link: string){
     console.log(link);
     this.issueProvider.getMoreIssuesLink(link).subscribe(httpResponse =>{
