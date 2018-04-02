@@ -1,6 +1,5 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
 import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage } from '../login/login';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +7,6 @@ import { config } from '../../app/config';
 import { CreateIssuePage } from '../create-issue/create-issue';
 import { IssuePage } from '../issue/issue';
 import { IssuesProvider } from '../../providers/issues/issues';
-
 import { Geolocation } from '@ionic-native/geolocation';
 import {latLng, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 
@@ -26,7 +24,8 @@ import {latLng, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 export class IssueMapPage {
  mapOptions: MapOptions;
  mapMarkers: Marker[];
-	
+ issuesAll = [];
+
  constructor(
     private auth: AuthProvider,
 	public http: HttpClient,
@@ -73,25 +72,37 @@ export class IssueMapPage {
 		id: i
 	});
   }
-	
-  getIssues(pageNumber){																				 
+
+ //get all the issues from the API
+  getIssues(pageNumber){
 	this.issuesProvider.getIssues(pageNumber).subscribe(issues => {
+		issues.map(issue => {
+			// add the issues to the array "issuesAll"
+			this.issuesAll.push(issue);
+		});
+		//if the issues.length by page is egal 50, the function recall itself
+		//else all issues have been added to the array issuesAll, so let's display them
 		if(issues.length===50){
-			issues.map(i => {
+			this.getIssues(pageNumber+1);
+		} else {
+			this.displayIssues();
+		}
+	});
+  }
+
+//display the issues on the map
+ displayIssues(){
+	 this.issuesAll.map(i => {
 				let m = marker([i.location.coordinates[1], i.location.coordinates[0]]).on('click',() => {
 					this.zone.run(() => {
 						this.goToIssuePage(i.id)
 					});
 				});
 				this.mapMarkers.push(m);
-				//issues.map(issue => console.log(issue));
 			}, err => {
 				console.warn('Could not get issues', err);
-			});
-			this.getIssues(pageNumber+1);
-		}
-});
-}
+			}); 
+ }
 }
 
 
