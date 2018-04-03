@@ -28,7 +28,8 @@
     <p *ngIf='emptiness'>Aucune issue signalée par cet utilisateur</p>
     <ion-item *ngFor="let issue of issues" id="{{issue.id}}">
       <ion-thumbnail item-start>
-        <img src="{{issue.imageUrl}}">
+        <img *ngIf='issue.imageUrl' src="{{issue.imageUrl}}">
+        <img *ngIf='!issue.imageUrl' src="assets/imgs/issue_replacement.png">
       </ion-thumbnail>
       <p>{{issue.createdAt | date: "yyyy/MM/dd"}} •
         <span *ngIf="issue?.state.includes('new')" class="new_state">{{issue.state}}</span>
@@ -40,20 +41,23 @@
     </ion-item>
   </ion-list>
 
+
   <ion-navbar>
-    <button *ngIf="linkFirst" ion-button icon-left color="light" (click)='getMoreIssues(linkFirst)'>
+    <button *ngIf="linkFirst" ion-button icon-left color="light" (click)='getMoreComment(linkFirst)'>
       <ion-icon name="arrow-back"></ion-icon> First
     </button>
 
-    <button *ngIf="linkPrev" ion-button color="light" (click)='getMoreIssues(linkPrev)'> Prev
+    <button *ngIf="linkPrev" ion-button color="light" (click)='getMoreComment(linkPrev)'> Prev
     </button>
 
-    <button *ngIf="linkNext" ion-button color="light" (click)='getMoreIssues(linkNext)'> Next
+    <button *ngIf="linkNext" ion-button color="light" (click)='getMoreComment(linkNext)'> Next
     </button>
 
-    <button *ngIf="linkLast" ion-button color="light" icon-left (click)='getMoreIssues(linkLast)'>
+    <button *ngIf="linkLast" ion-button color="light" icon-left (click)='getMoreComment(linkLast)'>
       <ion-icon name="arrow-forward"></ion-icon> Last
     </button>
   </ion-navbar>
+
+
 </ion-content>
 
