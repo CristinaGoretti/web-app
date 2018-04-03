@@ -113,7 +113,7 @@ export class IssueListPage {
     // Prevent default HTML form behavior.
     $event.preventDefault();
 
-    // Do not do anything if the form is invalid.
+    // Do not do anything if the form is invalid
     if (this.form.invalid) {
       return;
     }
