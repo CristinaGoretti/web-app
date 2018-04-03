@@ -23,7 +23,10 @@ Vous devez ensuite entrer vos informations personnelles.
 ![page de connection](https://image.noelshack.com/fichiers/2018/14/2/1522781714-capture-d-ecran-2018-04-03-a-20-54-31.png)
 
 ### Se connecter
-![page de login](https://image.noelshack.com/fichiers/2018/14/2/1522768676-login.png)
+
+Ici, remplissez les champs avec votre pseudo et votre mot de passe.
+
+![page de login](https://image.noelshack.com/fichiers/2018/14/2/1522787262-connexion.png)
 
 ### Page de map
 Ici s'affichent tous les problèmes signalés par les utilisateurs de l'application sur une carte. 
