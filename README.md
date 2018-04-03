@@ -5,6 +5,16 @@ Cette application vous permet de répertorier les problèmes qui se situent auto
 Vous pouvez également accéder à une carte qui recense les problèmes ainsi qu'à une liste que vous pouvez trier
 selon plusieurs critères expliqués en détails ci-dessous. 
 
+### Les améliorations envisageables
+
+Ci-dessus une liste de différentes améliorations possibles pour améliorer l'expérience utilisateur.
+- Mise en évidence sur la map par des couleurs (ou autres) des issues signalées par l'utilsateur connecté. 
+- Lors du chargement de la map, affichage premier lieu des issues autour de l'utilisateur et ensuite du reste des issues. 
+- Une gestion des filtres globale pour les pages map, issues-list, user-issues-list. 
+
+Ces améliorations n'ont pas été développées par manque de temps lors de cet exercice. 
+
+
 ### S'inscrire
 
 Si vous n'avez pas encore de compte, appuyez sur le bouton "Sign-up". 
