@@ -8,7 +8,7 @@ selon plusieurs critères expliqués en détails ci-dessous.
 
 ## Navigation
 
-![page de login](https://github.com/CristinaGoretti/web-app/www/assets/imgs/screenshots/login.png)
+![page de login](https://image.noelshack.com/fichiers/2018/14/2/1522768676-login.png)
 
 ### S'inscrire
 
