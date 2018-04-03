@@ -8,7 +8,7 @@ selon plusieurs critères expliqués en détails ci-dessous.
 
 ## Navigation
 
-![page de login](assets/screenshots/login.png)
+![page de login](www/assets/screenshots/login.png)
 
 ### S'inscrire
 
