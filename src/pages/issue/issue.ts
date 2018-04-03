@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HttpClient } from '@angular/common/http';
-import { config } from '../../app/config';
 import { CreateCommentPage } from '../create-comment/create-comment';
 import { IssuesProvider } from '../../providers/issues/issues';
 import { Issue } from '../../models/issue';

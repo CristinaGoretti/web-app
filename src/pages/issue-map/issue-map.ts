@@ -1,9 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { LoginPage } from '../login/login';
 import { HttpClient } from '@angular/common/http';
-import { config } from '../../app/config';
 import { CreateIssuePage } from '../create-issue/create-issue';
 import { IssuePage } from '../issue/issue';
 import { IssuesProvider } from '../../providers/issues/issues';

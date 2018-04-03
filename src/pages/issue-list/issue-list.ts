@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HttpClient } from '@angular/common/http';
-import { config } from '../../app/config';
 import { IssuePage } from '../issue/issue';
 import { IssuesProvider} from '../../providers/issues/issues';
 import { Issue } from '../../models/issue';

@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HttpClient } from '@angular/common/http';
-import { config } from '../../app/config';
 import { CommentRequest } from '../../models/comment-request';
 import { NgForm } from '@angular/forms';
 import { IssuesProvider } from '../../providers/issues/issues';

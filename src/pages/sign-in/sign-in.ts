@@ -1,13 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
 import {NgForm} from '@angular/forms';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 
 import {AuthRequest} from '../../models/auth-request';
 import {AuthProvider} from '../../providers/auth/auth';
-import {HomePage} from '../home/home';
-import {LoginPage} from "../login/login";
 
 import {UserRequest} from "../../models/user-request";
 import {UserProvider} from "../../providers/user/user";
@@ -38,8 +34,6 @@ export class SignInPage {
 
   constructor(
       private auth: AuthProvider,
-      private navCtrl: NavController,
-      public navParams: NavParams,
       public userProvider : UserProvider
   ) {
     this.authRequest = new AuthRequest();

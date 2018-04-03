@@ -56,11 +56,10 @@
 			<img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
 		  </ion-item>
 		</ion-list>
-
+		
 		<div padding>
 			  <!-- Submit button displayed when coords are ready -->
 			  <button *ngIf='coords' type='submit' [disabled]='issueForm.invalid' ion-button block>Add an issue</button>
-			
 			  <!-- Error message displayed if the issue creation failed -->
     		  <p *ngIf='checkSubmit' ion-text color='danger'>Issue creation failed, please try again</p>
 		</div>

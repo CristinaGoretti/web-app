@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { CreateIssuePage } from '../create-issue/create-issue';
 import { IssueMapPage } from '../issue-map/issue-map';
 import { IssueListPage } from '../issue-list/issue-list';
 import { UserIssuesListPage } from '../user-issues-list/user-issues-list';

@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { LoginPage } from '../login/login';
 import { HttpClient } from '@angular/common/http';
-import { config } from '../../app/config';
 import { NgForm } from '@angular/forms';
 import { IssuesProvider } from '../../providers/issues/issues';
 import { IssueRequest } from '../../models/issue-request';
@@ -25,13 +23,13 @@ import { PictureProvider } from '../../providers/picture/picture';
 })
 
 export class CreateIssuePage {
-  public issueMessage: string;
-  public issueRequest: IssueRequest;
-  public issueTypes: IssueType[];
-  public profil: User;
-  public pictureData: string;
-  public coords: Coordinates;
-  public checkSubmit: boolean;
+  issueMessage: string;
+  issueRequest: IssueRequest;
+  issueTypes: IssueType[];
+  profil: User;
+  pictureData: string;
+  coords: Coordinates;
+  checkSubmit: boolean;
 
   @ViewChild(NgForm)
   form: NgForm;  
@@ -48,39 +46,29 @@ export class CreateIssuePage {
 		//gestion localisation
         const geolocationPromise = this.geolocation.getCurrentPosition();
         geolocationPromise.then(position => {
-        const coords = position.coords;
         this.coords = position.coords; 
-        this.issueRequest.location.coordinates[0] = coords.longitude;
-        this.issueRequest.location.coordinates[1] = coords.latitude;
+        this.issueRequest.location.coordinates[0] = this.coords.longitude;
+        this.issueRequest.location.coordinates[1] = this.coords.latitude;
         }).catch(err => {
           console.warn(`Could not retrieve user position because: ${err.message}`);
         });
-
+		
     //initialisation des données de base d'une issue
     this.issueRequest = new IssueRequest();
     this.issueRequest.location = {
       "coordinates": [0,0],
       "type": "Point"
     };
-    //Ici il faudrait faire en sorte de l'upload enfaite dans le form
-    //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-    
-	this.issueRequest.imageUrl = this.pictureData;
-    this.issueRequest.imageUrl = "https://comem-appmob-2018b.herokuapp.com/images/broken-streetlight-2.jpg";
-
-  }
-
-	//
-	takePicture(){
-    this.issuesProvider.getIssueTypes().subscribe(issueTypes => {
-      this.issueTypes = issueTypes;
-      console.log(this.issueTypes);
-    });
-    this.camera.takeAndUploadPicture().subscribe(pictureData => {
-      this.pictureData = pictureData.url;
-    });
   }
 	
+//prendre une photo	
+takePicture() {
+    this.camera.takeAndUploadPicture().subscribe(pictureData => {
+      this.pictureData = pictureData.url;
+    }, err => {
+      console.warn('Could not take picture', err);
+    });
+  }
 	
   onChange() {
 		console.log('@@@', this.issueRequest);
@@ -132,7 +120,6 @@ export class CreateIssuePage {
   }
   
   ionViewDidLoad() {
-  	const url = `${config.apiUrl}/issueTypes`;
     this.getIssueTypes();
     this.getUser();
 
