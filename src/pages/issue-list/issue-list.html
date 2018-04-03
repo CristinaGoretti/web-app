@@ -33,6 +33,8 @@
                 <ion-select *ngIf='searchIssueRequest' [(ngModel)]="searchIssueRequest.state" #searchIssueInput='ngModel' name="searchIssue" (ionInput)="goToFilters()">
                     <ion-option value="new">New</ion-option>
                     <ion-option value="inProgress">inProgess</ion-option>
+                    <ion-option value="rejected">rejected</ion-option>
+                    <ion-option value="resolved">resolved</ion-option>
                 </ion-select>
             </ion-item>
         </ion-list>

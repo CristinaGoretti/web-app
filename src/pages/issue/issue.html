@@ -22,7 +22,8 @@
 
 <ion-content padding>
 <div *ngIf="issue" class="bloc">
-    <img src="{{issue.imageUrl}}" class="imageIssue">
+    <img *ngIf='issue.imageUrl' class="imageIssue" src="{{issue.imageUrl}}">
+    <img *ngIf='!issue.imageUrl' class="imageIssue" src="assets/imgs/issue_replacement.png">
     <ion-list id="{{issue.id}}">
         <ion-list-header>
                 Informations
@@ -41,7 +42,7 @@
             Commentaires
         </ion-list-header>
         <ion-item *ngFor="let comment of comments">
-            <!-- <b>{{comment.creator.firstname}} {{comment.creator.lastname}}</b>-->
+            <!--<b>{{comment.author.firstname}} {{comment.author.lastname}}</b>-->
             <b>Posté le:</b> {{comment.createdAt | date: "yyyy/MM/dd"}}
             <br>{{comment.text}}
         </ion-item>
