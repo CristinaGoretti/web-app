@@ -55,20 +55,20 @@ Ici s'affichent tous les problèmes signalés par le user connecté
 Ici s'affiche le détail de chaque issue. Vous y trouverez notamment une description, une date de création et de modification, son état ainsi que 
  ses coordonnées (latitude et longitude).
 
-![page issue detaillee](http://zupimages.net/viewer.php?id=18/14/l1qg.png)
+![page issue detaillee](https://image.noelshack.com/fichiers/2018/14/2/1522786927-issue-detailed.png)
 
 
 ### Page détail de l'issue - Commentaires
 
 En déroulant la page, vous trouvez également une liste de commentaires, liées à l'issue en question. Pour écrire un commentaire, il suffit de cliquer sur le bouton "Ajouter un commentaire".
 
-![page issue detaillee et comm](http://zupimages.net/viewer.php?id=18/14/vvnq.png)
+![page issue detaillee et comm](https://image.noelshack.com/fichiers/2018/14/2/1522787044-comm-bt.png)
 
 ### Page ajout de commentaire
 
 Sur cette page, vous pouvez ajouter un commentaire. Pour cela, il vous suffit de taper une description et de cliquer sur envoyer!
 
-![page ajout commentaire](http://zupimages.net/viewer.php?id=18/14/cajq.png)
+![page ajout commentaire](https://image.noelshack.com/fichiers/2018/14/2/1522787100-supercomm-copie.png)
 
 ### Page create issue
 Ici l'utilisateur peut créer une issue. Pour celà il doit saisir les informations obligatoires. Il a également la possibilité de prendre une photo pour illustrer le problème. Le bouton d'envoi du formulaire apparait uniquement quand les coordonnées de l'utilisateur sont chargées.
