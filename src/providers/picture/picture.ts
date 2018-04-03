@@ -1,11 +1,8 @@
-/*import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-//ICI ca foirre j'arrive pas a installer ionic camera etc...
-//import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Observable } from 'rxjs/Observable';
 import { switchMap, tap } from 'rxjs/operators';
-
 import { config } from '../../app/config';
 import { QimgImage } from '../../models/qimg-image';
 
@@ -15,12 +12,15 @@ import { QimgImage } from '../../models/qimg-image';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-/*@Injectable()
-export class PictureProvider {
 
-  constructor(/*ICI AUSSI FAUT VOIR AVEC L?INSTALLATION DE MERDE private camera: Camera,*/ /* public http: HttpClient) {
-    console.log('Hello PictureProvider Provider');
-    console.log('@@@ http client', !!this.http);
+@Injectable()
+export class PictureProvider {
+  pictureData: Observable<string>;
+
+  constructor(
+	public http: HttpClient,
+	private camera: Camera
+	) {
   }
 
    /**
@@ -30,28 +30,24 @@ export class PictureProvider {
    * has been taken and successfully uploaded to the qimg API. An error may be
    * emitted instead if the user does not take a picture of if the upload fails.
    */
-  //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-  /*takeAndUploadPicture(): Observable<QimgImage> {
-
+  takeAndUploadPicture(): Observable<QimgImage> {
     // Take a picture.
     // This creates an observable of picture data.
-    const pictureData$ = this.takePicture();
+    this.pictureData = this.takePicture();
 
     // Once the picture has been taken, upload it to the qimg API.
     // This returns a new observable of the resulting QimgImage object.
-    const uploadedImage$ = pictureData$.pipe(switchMap(data => this.uploadPicture(data)))
+    const uploadedImage = this.pictureData.pipe(switchMap(data => this.uploadPicture(data)))
 
     // Once the picture has been uploaded, log a message to the console
     // indicating that all went well.
     // This does not change the observable stream.
-    const debug$ = uploadedImage$.pipe(tap(image => console.log(`Successfully uploaded picture to ${image.url}`)));
+    const debug = uploadedImage.pipe(tap(image => console.log(`Successfully uploaded picture to ${image.url}`)));
 
     // Return the observable stream.
-    return debug$;
-  }*/
+    return debug;
+  }
 
-
-  //SUSPENS SUR CETTE TAKEPICTURE
   /**
    * Launches the camera to take a picture.
    *
@@ -59,9 +55,7 @@ export class PictureProvider {
    * once the picture has been taken. An error may be emitted instead if the
    * user does not take a picture.
    */
-  //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-  /*private takePicture(): Observable<string> {
-
+    private takePicture(): Observable<string> {
     // Prepare camera options.
     const options: CameraOptions = {
       quality: 50,
@@ -77,7 +71,7 @@ export class PictureProvider {
 
     // Convert the promise to an observable and return it.
     return Observable.fromPromise(pictureDataPromise);
-  }*/
+  }
 
   /*
    * Uploads raw picture data to the qimg API.
@@ -85,7 +79,7 @@ export class PictureProvider {
    * Returns an observable that will emit the created QimgImage object.
    * An error may be emitted instead if the upload fails.
    */
-  /*private uploadPicture(pictureData: string): Observable<QimgImage> {
+   private uploadPicture(pictureData: string): Observable<QimgImage> {
 
     const requestBody = {
       data: pictureData
@@ -93,7 +87,7 @@ export class PictureProvider {
 
     const requestOptions = {
       headers: {
-        Authorization: `Bearer ${config.qimgSecret}`
+        Authorization: `Bearer ${config.qimgToken}`
       }
     };
 
@@ -102,4 +96,4 @@ export class PictureProvider {
 
 }
 
-*/
+
