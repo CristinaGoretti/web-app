@@ -28,6 +28,12 @@ Ici s'affichent tous les problèmes signalés par les utilisateurs de l'applicat
 
 L'utilisateur a la possibilité de trier les problèmes selon son statut ("new","inProgress","rejected","resolved").
 
+
+### Page create issue
+Ici l'utilisateur peut créer une issue. Pour celà il doit saisir les informations obligatoires. Il a également la possibilité de prendre une photo pour illustrer le problème. Le bouton d'envoi du formulaire apparait uniquement quand les coordonnées de l'utilisateur sont chargées.
+
+![page create issue](https://image.noelshack.com/fichiers/2018/14/2/1522781715-capture-d-ecran-2018-04-03-a-20-54-09.png)
+
 ### Page user issues list
 Ici s'affichent tous les problèmes signalés par le user connecté
 
