@@ -28,16 +28,24 @@ Ici s'affichent tous les problèmes signalés par les utilisateurs de l'applicat
 
 L'utilisateur a la possibilité de trier les problèmes selon son statut ("new","inProgress","rejected","resolved").
 
+![page issues list filtre](https://image.noelshack.com/fichiers/2018/14/2/1522783319-capture-d-ecran-2018-04-03-a-21-21-05.png)
 
-### Page create issue
-Ici l'utilisateur peut créer une issue. Pour celà il doit saisir les informations obligatoires. Il a également la possibilité de prendre une photo pour illustrer le problème. Le bouton d'envoi du formulaire apparait uniquement quand les coordonnées de l'utilisateur sont chargées.
+### Page filtre
+Une page filtres s'ouvre avec les filtres choisis dès que le formulaire est envoyé
 
-![page create issue](https://image.noelshack.com/fichiers/2018/14/2/1522781715-capture-d-ecran-2018-04-03-a-20-54-09.png)
+![page filtres](https://image.noelshack.com/fichiers/2018/14/2/1522783319-capture-d-ecran-2018-04-03-a-21-21-22.png
+)
+
 
 ### Page user issues list
 Ici s'affichent tous les problèmes signalés par le user connecté
 
 ![page user issues list](https://image.noelshack.com/fichiers/2018/14/2/1522781716-capture-d-ecran-2018-04-03-a-20-52-47.png)
+
+### Page create issue
+Ici l'utilisateur peut créer une issue. Pour celà il doit saisir les informations obligatoires. Il a également la possibilité de prendre une photo pour illustrer le problème. Le bouton d'envoi du formulaire apparait uniquement quand les coordonnées de l'utilisateur sont chargées.
+
+![page create issue](https://image.noelshack.com/fichiers/2018/14/2/1522781715-capture-d-ecran-2018-04-03-a-20-54-09.png)
 
 ### Page user
 Ici s'affichent les informations de l'user connecté.
@@ -45,15 +53,6 @@ Ici s'affichent les informations de l'user connecté.
 ![page user](https://image.noelshack.com/fichiers/2018/14/2/1522781715-capture-d-ecran-2018-04-03-a-20-52-59.png)
 
 
-
-
-
-https://www.noelshack.com/2018-14-2-1522781715-capture-d-ecran-2018-04-03-a-20-52-34.png
-https://www.noelshack.com/2018-14-2-1522781716-capture-d-ecran-2018-04-03-a-20-52-47.png
-https://www.noelshack.com/2018-14-2-1522781715-capture-d-ecran-2018-04-03-a-20-52-59.png
-https://www.noelshack.com/2018-14-2-1522781716-capture-d-ecran-2018-04-03-a-20-53-13.png
-https://www.noelshack.com/2018-14-2-1522781715-capture-d-ecran-2018-04-03-a-20-54-09.png
-https://www.noelshack.com/2018-14-2-1522781714-capture-d-ecran-2018-04-03-a-20-54-31.png
 
 
 
