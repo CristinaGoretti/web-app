@@ -47,7 +47,8 @@
     <ion-list>
         <ion-item *ngFor="let issue of issues" id="{{issue.id}}">
             <ion-thumbnail item-start>
-                <img src="{{issue.imageUrl}}">
+                <img *ngIf='issue.imageUrl' src="{{issue.imageUrl}}">
+                <img *ngIf='!issue.imageUrl' src="assets/imgs/issue_replacement.png">
             </ion-thumbnail>
             <h2>{{issue.creator.firstname}}</h2>
             <p>
@@ -60,7 +61,6 @@
             <button ion-button clear item-end (click)='goToIssue(issue.id);'>Voir plus</button>
         </ion-item>
     </ion-list>
-
 
     <ion-navbar>
         <button *ngIf="linkFirst" ion-button icon-left color="light" (click)='getMoreIssues(linkFirst)'>

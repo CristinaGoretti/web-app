@@ -41,7 +41,7 @@
             Commentaires
         </ion-list-header>
         <ion-item *ngFor="let comment of comments">
-           <!-- <b>{{comment.creator.firstname}} {{comment.creator.lastname}}</b>-->
+            <!-- <b>{{comment.creator.firstname}} {{comment.creator.lastname}}</b>-->
             <b>Posté le:</b> {{comment.createdAt | date: "yyyy/MM/dd"}}
             <br>{{comment.text}}
         </ion-item>
@@ -64,7 +64,6 @@
             <ion-icon name="arrow-forward"></ion-icon> Last
         </button>
     </ion-navbar>
-
 
 
     <!--<ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
