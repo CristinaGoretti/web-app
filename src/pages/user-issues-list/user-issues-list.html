@@ -39,5 +39,21 @@
       <button ion-button clear item-end (click)='goToIssue(issue.id);'>Voir plus</button>
     </ion-item>
   </ion-list>
+
+  <ion-navbar>
+    <button *ngIf="linkFirst" ion-button icon-left color="light" (click)='getMoreIssues(linkFirst)'>
+      <ion-icon name="arrow-back"></ion-icon> First
+    </button>
+
+    <button *ngIf="linkPrev" ion-button color="light" (click)='getMoreIssues(linkPrev)'> Prev
+    </button>
+
+    <button *ngIf="linkNext" ion-button color="light" (click)='getMoreIssues(linkNext)'> Next
+    </button>
+
+    <button *ngIf="linkLast" ion-button color="light" icon-left (click)='getMoreIssues(linkLast)'>
+      <ion-icon name="arrow-forward"></ion-icon> Last
+    </button>
+  </ion-navbar>
 </ion-content>
 
