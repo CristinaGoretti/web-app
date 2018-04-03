@@ -4,6 +4,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Camera } from '@ionic-native/camera';
 
 
 import { MyApp } from './app.component';
@@ -29,7 +30,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { IssuesProvider } from '../providers/issues/issues';
 import { UserProvider } from '../providers/user/user';
-//import { PictureProvider } from '../providers/picture/picture';
+import { PictureProvider } from '../providers/picture/picture';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { UserProvider } from '../providers/user/user';
     AuthProvider,
     IssuesProvider,
     UserProvider,
-    //PictureProvider
+	Camera,
+    PictureProvider
   ]
 })
 

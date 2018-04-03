@@ -11,15 +11,14 @@ import { IssueType } from '../../models/issueType';
 import { Geolocation } from '@ionic-native/geolocation';
 import { User } from '../../models/user';
 import { IssueListPage } from '../issue-list/issue-list';
-//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-//import { PictureProvider } from '../../providers/picture/picture';
+import { PictureProvider } from '../../providers/picture/picture';
+
 /**
  * Generated class for the CreateIssuePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
 @Component({
   selector: 'page-create-issue',
   templateUrl: 'create-issue.html',
@@ -27,7 +26,7 @@ import { IssueListPage } from '../issue-list/issue-list';
 
 export class CreateIssuePage {
   public issueMessage: string;
-  issueRequest: IssueRequest;
+  public issueRequest: IssueRequest;
   public issueTypes: IssueType[];
   public profil: User;
   public pictureData: string;
@@ -43,19 +42,16 @@ export class CreateIssuePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public issuesProvider: IssuesProvider,
-    public geolocation: Geolocation/*,
-    private camera: PictureProvider*/
-    //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+    public geolocation: Geolocation,
+    private camera: PictureProvider
   ) {
-        //gestion localisation
+		//gestion localisation
         const geolocationPromise = this.geolocation.getCurrentPosition();
         geolocationPromise.then(position => {
-          const coords = position.coords;
-          this.coords = position.coords; 
-          
-          this.issueRequest.location.coordinates[0] = coords.longitude;
-          this.issueRequest.location.coordinates[1] = coords.latitude;
-    
+        const coords = position.coords;
+        this.coords = position.coords; 
+        this.issueRequest.location.coordinates[0] = coords.longitude;
+        this.issueRequest.location.coordinates[1] = coords.latitude;
         }).catch(err => {
           console.warn(`Could not retrieve user position because: ${err.message}`);
         });
@@ -68,13 +64,14 @@ export class CreateIssuePage {
     };
     //Ici il faudrait faire en sorte de l'upload enfaite dans le form
     //CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-    //this.issueRequest.imageUrl = this.pictureData;
+    
+	this.issueRequest.imageUrl = this.pictureData;
     this.issueRequest.imageUrl = "https://comem-appmob-2018b.herokuapp.com/images/broken-streetlight-2.jpg";
 
   }
-//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
-  //Ca ca devrait marcher si tout va bien
-  /*takePicture(){
+
+	//
+	takePicture(){
     this.issuesProvider.getIssueTypes().subscribe(issueTypes => {
       this.issueTypes = issueTypes;
       console.log(this.issueTypes);
@@ -82,7 +79,9 @@ export class CreateIssuePage {
     this.camera.takeAndUploadPicture().subscribe(pictureData => {
       this.pictureData = pictureData.url;
     });
-  }*/
+  }
+	
+	
   onChange() {
 		console.log('@@@', this.issueRequest);
 	}
@@ -115,7 +114,6 @@ export class CreateIssuePage {
 
     //gestion author
     this.issueRequest.creatorHref = "/api/users/" + this.profil.id;
-
     this.createIssue();
     this.goToIssueListPage();
   }
