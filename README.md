@@ -7,10 +7,10 @@ selon plusieurs critères expliqués en détails ci-dessous.
 
 ### Les améliorations envisageables
 
-Ci-dessus une liste de différentes améliorations possibles pour améliorer l'expérience utilisateur.
+Ci-dessous une liste de différentes améliorations possibles pour améliorer l'expérience utilisateur.
 - Mise en évidence sur la map par des couleurs (ou autres) des issues signalées par l'utilsateur connecté. 
-- Lors du chargement de la map, affichage premier lieu des issues autour de l'utilisateur et ensuite du reste des issues. 
-- Une gestion des filtres globale pour les pages map, issues-list, user-issues-list. 
+- Lors du chargement de la map, affichage en premier lieu des issues autour de l'utilisateur et ensuite du reste des issues. 
+- Une gestion des filtres et un bouton create new issue globaux pour les pages map, issues-list, user-issues-list (par exemple géré dans un slide menu)
 
 Ces améliorations n'ont pas été développées par manque de temps lors de cet exercice. 
 
