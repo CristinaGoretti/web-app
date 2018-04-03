@@ -92,6 +92,7 @@ export class IssueMapPage {
 
 //display the issues on the map
  displayIssues(){
+	 console.log(this.issuesAll);
 	 this.issuesAll.map(i => {
 				let m = marker([i.location.coordinates[1], i.location.coordinates[0]]).on('click',() => {
 					this.zone.run(() => {

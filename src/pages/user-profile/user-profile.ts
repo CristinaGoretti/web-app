@@ -58,6 +58,9 @@ export class UserProfilePage {
     });
   }
 
+ logOut() {
+    this.auth.logOut();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserProfilePage');

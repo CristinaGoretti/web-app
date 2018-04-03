@@ -25,7 +25,7 @@
 
 
   <ion-list >
-    <p *ngIf='emptiness'>Aucune issue créée par cete utilisateur</p>
+    <p *ngIf='emptiness'>Aucune issue signalée par cet utilisateur</p>
     <ion-item *ngFor="let issue of issues" id="{{issue.id}}">
       <ion-thumbnail item-start>
         <img src="{{issue.imageUrl}}">
@@ -34,6 +34,5 @@
       <button ion-button clear item-end (click)='goToIssue(issue.id);'>Voir plus</button>
     </ion-item>
   </ion-list>
-
 </ion-content>
 

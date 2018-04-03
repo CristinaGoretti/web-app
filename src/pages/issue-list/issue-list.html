@@ -24,13 +24,6 @@
         <button ion-fab mini (click)='goToCreateIssue()'><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 
-    <!--<ion-searchbar
-            [(ngModel)]="myInput"
-            [showCancelButton]="shouldShowCancel"
-            (ionInput)="goToFilters()"
-            (ionCancel)="onCancel($event)">
-    </ion-searchbar>-->
-
     <form (submit)='onSubmit($event)' #searchForm='ngForm'>
         <ion-list>
       
@@ -46,13 +39,11 @@
 
         <!-- Submit button -->
         <button full type='submit' [disabled]='searchForm.invalid' ion-button block> Rechercher</button>
-
     </form>
 
 
 
     <!--<input [(ngModel)]="searchText" placeholder="search text goes here">-->
-
     <ion-list>
         <ion-item *ngFor="let issue of issues" id="{{issue.id}}">
             <ion-thumbnail item-start>
@@ -80,12 +71,4 @@
                 <ion-icon name="arrow-forward"></ion-icon> Last
         </button>
     </ion-navbar>
-
-    <!--
-    <button *ngIf="linkFirst" ion-button (click)='getMoreIssues(linkFirst)'>FirstIssues</button>
-    <button *ngIf="linkPrev" ion-button (click)='getMoreIssues(linkPrev)'>PrevIssues</button>
-    <button *ngIf="linkNext" ion-button (click)='getMoreIssues(linkNext)'>NextIssues</button>
-    <button *ngIf="linkLast" ion-button (click)='getMoreIssues(linkLast)'>LastIssues</button>
-
-    -->
 </ion-content>

@@ -26,20 +26,20 @@ import { IssueListPage } from '../issue-list/issue-list';
 })
 
 export class CreateIssuePage {
-
   public issueMessage: string;
   issueRequest: IssueRequest;
   public issueTypes: IssueType[];
   public profil: User;
   public pictureData: string;
   public coords: Coordinates;
+  public checkSubmit: boolean;
 
   @ViewChild(NgForm)
   form: NgForm;  
 
   constructor(
     private auth: AuthProvider,
-	  public http: HttpClient,
+	public http: HttpClient,
     public navCtrl: NavController,
     public navParams: NavParams,
     public issuesProvider: IssuesProvider,
@@ -53,8 +53,8 @@ export class CreateIssuePage {
           const coords = position.coords;
           this.coords = position.coords; 
           
-          this.issueRequest.location.coordinates[0] = coords.latitude;
-          this.issueRequest.location.coordinates[1] = coords.longitude;
+          this.issueRequest.location.coordinates[0] = coords.longitude;
+          this.issueRequest.location.coordinates[1] = coords.latitude;
     
         }).catch(err => {
           console.warn(`Could not retrieve user position because: ${err.message}`);
@@ -93,7 +93,7 @@ export class CreateIssuePage {
 
     // Do not do anything if the form is invalid.
     if (this.form.invalid) {
-      return;
+	  this.checkSubmit = false;
     }
 
     //gestion user
@@ -108,8 +108,8 @@ export class CreateIssuePage {
       this.issueRequest.tags = tabTags;      
     }
 
-    this.issueRequest.location.coordinates[0] = this.coords.latitude;
-    this.issueRequest.location.coordinates[1] = this.coords.longitude;
+    this.issueRequest.location.coordinates[0] = this.coords.longitude;
+    this.issueRequest.location.coordinates[1] = this.coords.latitude;
 
 
 
