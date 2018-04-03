@@ -1,3 +1,18 @@
 page-filters {
 
+  .new_state{
+
+    color: green;
+  }
+
+  .inProgress_state{
+    color: lightgreen;
+  }
+
+  .rejected_state{
+    color: red;
+  }
+
+  .resolved_state{
+  }
 }

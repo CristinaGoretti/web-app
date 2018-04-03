@@ -50,7 +50,13 @@
                 <img src="{{issue.imageUrl}}">
             </ion-thumbnail>
             <h2>{{issue.creator.firstname}}</h2>
-            <p>{{issue.createdAt | date: "yyyy/MM/dd"}} • {{issue.state}}</p>
+            <p>
+                {{issue.createdAt | date: "yyyy/MM/dd"}} •
+                <span *ngIf="issue?.state.includes('new')" class="new_state">{{issue.state}}</span>
+                <span *ngIf="issue?.state.includes('inProgress')" class="inProgress_state">{{issue.state}}</span>
+                <span *ngIf="issue?.state.includes('rejected')" class="rejected_state">{{issue.state}}</span>
+                <span *ngIf="issue?.state.includes('resolved')" class="resolved_state">{{issue.state}}</span>
+            </p>
             <button ion-button clear item-end (click)='goToIssue(issue.id);'>Voir plus</button>
         </ion-item>
     </ion-list>

@@ -41,16 +41,30 @@
             Commentaires
         </ion-list-header>
         <ion-item *ngFor="let comment of comments">
+           <!-- <b>{{comment.creator.firstname}} {{comment.creator.lastname}}</b>-->
             <b>Posté le:</b> {{comment.createdAt | date: "yyyy/MM/dd"}}
             <br>{{comment.text}}
         </ion-item>
     </ion-list>
 
     <button ion-button full (click)='goToCreateComment()'>Ajouter un commentaire</button>
-    <button *ngIf="linkFirst" ion-button (click)='getMoreComment(linkFirst)'>FirstComments</button>
-    <button *ngIf="linkPrev" ion-button (click)='getMoreComment(linkPrev)'>PrevComments</button>
-    <button *ngIf="linkNext" ion-button (click)='getMoreComment(linkNext)'>NextComments</button>
-    <button *ngIf="linkLast" ion-button (click)='getMoreComment(linkLast)'>LastComments</button>
+
+    <ion-navbar>
+        <button *ngIf="linkFirst" ion-button icon-left color="light" (click)='getMoreComment(linkFirst)'>
+            <ion-icon name="arrow-back"></ion-icon> First
+        </button>
+
+        <button *ngIf="linkPrev" ion-button color="light" (click)='getMoreComment(linkPrev)'> Prev
+        </button>
+
+        <button *ngIf="linkNext" ion-button color="light" (click)='getMoreComment(linkNext)'> Next
+        </button>
+
+        <button *ngIf="linkLast" ion-button color="light" icon-left (click)='getMoreComment(linkLast)'>
+            <ion-icon name="arrow-forward"></ion-icon> Last
+        </button>
+    </ion-navbar>
+
 
 
     <!--<ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
