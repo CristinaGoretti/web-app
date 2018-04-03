@@ -46,11 +46,29 @@ Une page filtres s'ouvre avec les filtres choisis dès que le formulaire est env
 ![page filtres](https://image.noelshack.com/fichiers/2018/14/2/1522783319-capture-d-ecran-2018-04-03-a-21-21-22.png
 )
 
-
 ### Page user issues list
 Ici s'affichent tous les problèmes signalés par le user connecté
 
 ![page user issues list](https://image.noelshack.com/fichiers/2018/14/2/1522781716-capture-d-ecran-2018-04-03-a-20-52-47.png)
+
+### Page détail de l'issue
+Ici s'affiche le détail de chaque issue. Vous y trouverez notamment une description, une date de création et de modification, son état ainsi que 
+ ses coordonnées (latitude et longitude).
+
+![page issue detaillee](http://zupimages.net/viewer.php?id=18/14/l1qg.png)
+
+
+### Page détail de l'issue - Commentaires
+
+En déroulant la page, vous trouvez également une liste de commentaires, liées à l'issue en question. Pour écrire un commentaire, il suffit de cliquer sur le bouton "Ajouter un commentaire".
+
+![page issue detaillee et comm](http://zupimages.net/viewer.php?id=18/14/vvnq.png)
+
+### Page ajout de commentaire
+
+Sur cette page, vous pouvez ajouter un commentaire. Pour cela, il vous suffit de taper une description et de cliquer sur envoyer!
+
+![page ajout commentaire](http://zupimages.net/viewer.php?id=18/14/cajq.png)
 
 ### Page create issue
 Ici l'utilisateur peut créer une issue. Pour celà il doit saisir les informations obligatoires. Il a également la possibilité de prendre une photo pour illustrer le problème. Le bouton d'envoi du formulaire apparait uniquement quand les coordonnées de l'utilisateur sont chargées.
